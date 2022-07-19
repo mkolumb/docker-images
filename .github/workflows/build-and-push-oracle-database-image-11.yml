@@ -40,7 +40,10 @@ jobs:
           cd OracleDatabase/SingleInstance/dockerfiles/11.2.0.2/
           ls
           wget http://www.iea-software.com/ftp/emeraldv5/linux/ora/oracle-xe-11.2.0-1.0.x86_64.rpm.zip
-          chmod -R 777 OracleDatabase/SingleInstance/dockerfiles/11.2.0.2
+          cd ..
+          chmod -R 777 11.2.0.2
+          ls
+          cd 11.2.0.2
           ls
 
       - name: Build Oracle Database image
