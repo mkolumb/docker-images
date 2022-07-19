@@ -39,4 +39,4 @@ jobs:
 
       - name: Push image to GitHub Container Registry
         run: |
-          docker push ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb:21.3-xe
+          docker push ghcr.io:${{ steps.repo-owner.outputs.repo-owner }}/oracledb:21.3-xe
