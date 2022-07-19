@@ -1,0 +1,53 @@
+name: Build and publish Oracle Database 11 container image to GitHub Container Registry
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'OracleDatabase/SingleInstance/*'
+      - '.github/workflows/build-and-push-oracle-database-image.yml'
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: oracle-db
+  TAG: xe
+
+jobs:
+  push:
+    name: Build and push Oracle Database image
+
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Log into GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${GITHUB_ACTOR,,} --password-stdin
+
+      - name: Repository owner needs to be lowercase
+        id: repo-owner
+        run: |
+          REPO_OWNER=${{ github.repository_owner }}
+          echo "::set-output name=repo-owner::${REPO_OWNER,,}"
+
+      - name: Download required image
+        run: |
+          wget http://www.iea-software.com/ftp/emeraldv5/linux/ora/oracle-xe-11.2.0-1.0.x86_64.rpm.zip
+          mv oracle-xe-11.2.0-1.0.x86_64.rpm.zip OracleDatabase/SingleInstance/dockerfiles/11.2.0.2
+
+      - name: Build Oracle Database image
+        run: |
+          cd OracleDatabase/SingleInstance/dockerfiles
+          ./buildContainerImage-shm.sh -v 11.2.0.2 -x -t ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb:11.2-xe
+
+      - name: Build Oracle Prebuilt Database image
+        run: |
+          cd OracleDatabase/SingleInstance/extensions
+          ./buildContainerImage-shm.sh -b ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb:11.2-xe -t ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb_pre:11.2-xe -x 'prebuiltdb'
+
+      - name: Push image to GitHub Container Registry
+        run: |
+          docker push ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb:11.2-xe
+          docker push ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb_pre:11.2-xe

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "No wait flag"
+echo "${NO_WAIT}"
+
 ############# Execute custom scripts ##############
 function runUserScripts {
 
@@ -207,6 +210,11 @@ else
   echo "########### E R R O R ###############"
   echo "#####################################"
 fi;
+
+# Exiting the script without waiting on the tail logs
+if [ "${NO_WAIT}" = "nowait" ]; then
+   exit $status;
+fi
 
 echo "The following output is now a tail of the alert.log:"
 tail -f $ORACLE_BASE/diag/rdbms/*/*/trace/alert*.log &
