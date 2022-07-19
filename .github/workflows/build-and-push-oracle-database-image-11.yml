@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - 'OracleDatabase/SingleInstance/*'
-      - '.github/workflows/build-and-push-oracle-database-image.yml'
+      - '.github/workflows/build-and-push-oracle-database-image-11.yml'
   workflow_dispatch:
 
 env:
