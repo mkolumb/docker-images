@@ -62,7 +62,7 @@ jobs:
       - name: Build Oracle Prebuilt Database image
         run: |
           cd OracleDatabase/SingleInstance/extensions
-          ./buildContainerImage-shm.sh -b ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb:11.2-xe -t ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb_pre:11.2-xe -x 'prebuiltdb'
+          ./buildExtensions-shm.sh -b ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb:11.2-xe -t ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb_pre:11.2-xe -x 'prebuiltdb'
 
       - name: Push image to GitHub Container Registry
         run: |
