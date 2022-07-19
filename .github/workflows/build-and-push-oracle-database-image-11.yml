@@ -42,16 +42,10 @@ jobs:
           chmod -R 777 SingleInstance
           ls -l
 
-      # - name: Download required image
-      #   run: |
-      #     cd OracleDatabase/SingleInstance/dockerfiles/11.2.0.2/
-      #     ls -l
-      #     wget http://www.iea-software.com/ftp/emeraldv5/linux/ora/oracle-xe-11.2.0-1.0.x86_64.rpm.zip
-      #     cd ..
-      #     chmod -R 777 11.2.0.2
-      #     ls -l
-      #     cd 11.2.0.2
-      #     ls -l
+      - name: Download required image
+        run: |
+          cd OracleDatabase/SingleInstance/dockerfiles/11.2.0.2/
+          wget http://www.iea-software.com/ftp/emeraldv5/linux/ora/oracle-xe-11.2.0-1.0.x86_64.rpm.zip
 
       - name: Set rights
         run: |
