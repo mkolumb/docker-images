@@ -35,6 +35,13 @@ jobs:
           REPO_OWNER=${{ github.repository_owner }}
           echo "::set-output name=repo-owner::${REPO_OWNER,,}"
 
+      - name: Set rights
+        run: |
+          cd OracleDatabase
+          ls -l
+          chmod -R 777 SingleInstance
+          ls -l
+
       # - name: Download required image
       #   run: |
       #     cd OracleDatabase/SingleInstance/dockerfiles/11.2.0.2/
@@ -45,6 +52,13 @@ jobs:
       #     ls -l
       #     cd 11.2.0.2
       #     ls -l
+
+      - name: Set rights
+        run: |
+          cd OracleDatabase
+          ls -l
+          chmod -R 777 SingleInstance
+          ls -l
 
       - name: Build Oracle Database image
         run: |
