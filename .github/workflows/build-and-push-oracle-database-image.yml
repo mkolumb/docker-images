@@ -38,12 +38,12 @@ jobs:
       - name: Build Oracle Database image
         run: |
           cd OracleDatabase/SingleInstance/dockerfiles
-          sudo ./buildContainerImage.sh -v 21.3.0 -x -t ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb:21.3-xe
+          ./buildContainerImage.sh -v 21.3.0 -x -t ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb:21.3-xe
 
       - name: Build Oracle Prebuilt Database image
         run: |
           cd OracleDatabase/SingleInstance/extensions
-          sudo ./buildExtensions.sh -b ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb:21.3-xe -t ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb_pre:21.3-xe -x 'prebuiltdb' -o '--build-arg ORACLE_SID=XE --build-arg ENABLE_ARCHIVELOG=false --build-arg ORACLE_PWD=root'
+          ./buildExtensions.sh -b ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb:21.3-xe -t ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb_pre:21.3-xe -x 'prebuiltdb' -o '--build-arg ORACLE_SID=XE --build-arg ENABLE_ARCHIVELOG=false --build-arg ORACLE_PWD=root'
 
       - name: Push image to GitHub Container Registry
         run: |
