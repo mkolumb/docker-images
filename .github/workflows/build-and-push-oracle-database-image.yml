@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'OracleDatabase/SingleInstance/dockerfiles/*'
+      - 'OracleDatabase/SingleInstance/*'
       - '.github/workflows/build-and-push-oracle-database-image.yml'
   workflow_dispatch:
 
@@ -37,6 +37,12 @@ jobs:
           cd OracleDatabase/SingleInstance/dockerfiles
           ./buildContainerImage.sh -v 21.3.0 -x -t ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb:21.3-xe
 
+      - name: Build Oracle Prebuilt Database image
+        run: |
+          cd OracleDatabase/SingleInstance/extensions
+          ./buildExtensions.sh -b ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb:21.3-xe -t ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb_pre:21.3-xe -x 'prebuiltdb' -o '--build-arg ORACLE_SID=XE --build-arg ENABLE_ARCHIVELOG=false --build-arg ORACLE_PWD=root'
+
       - name: Push image to GitHub Container Registry
         run: |
           docker push ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb:21.3-xe
+          docker push ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb_pre:21.3-xe
