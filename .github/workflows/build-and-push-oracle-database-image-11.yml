@@ -38,17 +38,19 @@ jobs:
       - name: Download required image
         run: |
           sudo wget http://www.iea-software.com/ftp/emeraldv5/linux/ora/oracle-xe-11.2.0-1.0.x86_64.rpm.zip
-          sudo mv oracle-xe-11.2.0-1.0.x86_64.rpm.zip OracleDatabase/SingleInstance/dockerfiles/11.2.0.2/
+          sudo mv oracle-xe-11.2.0-1.0.x86_64.rpm.zip OracleDatabase/SingleInstance/dockerfiles/11.2.0.2/oracle-xe-11.2.0-1.0.x86_64.rpm.zip
           sudo chmod -R 777 OracleDatabase/SingleInstance/dockerfiles/11.2.0.2
+          sudo cd OracleDatabase/SingleInstance/dockerfiles
+          sudo ls
 
       - name: Build Oracle Database image
         run: |
-          cd OracleDatabase/SingleInstance/dockerfiles
+          sudo cd OracleDatabase/SingleInstance/dockerfiles
           sudo ./buildContainerImage-shm.sh -v 11.2.0.2 -x -t ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb:11.2-xe
 
       - name: Build Oracle Prebuilt Database image
         run: |
-          cd OracleDatabase/SingleInstance/extensions
+          sudo cd OracleDatabase/SingleInstance/extensions
           sudo ./buildContainerImage-shm.sh -b ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb:11.2-xe -t ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb_pre:11.2-xe -x 'prebuiltdb'
 
       - name: Push image to GitHub Container Registry
