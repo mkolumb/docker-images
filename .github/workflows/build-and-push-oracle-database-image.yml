@@ -35,8 +35,8 @@ jobs:
       - name: Build Oracle Database image
         run: |
           cd OracleDatabase/SingleInstance/dockerfiles
-          ./buildContainerImage.sh -v 21.3.0 -x -t ${{ steps.repo-owner.outputs.repo-owner }}/oracledb:21.3-xe
+          ./buildContainerImage.sh -v 21.3.0 -x -t ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb:21.3-xe
 
       - name: Push image to GitHub Container Registry
         run: |
-          docker push ghcr.io:${{ steps.repo-owner.outputs.repo-owner }}/oracledb:21.3-xe
+          docker push ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb:21.3-xe
