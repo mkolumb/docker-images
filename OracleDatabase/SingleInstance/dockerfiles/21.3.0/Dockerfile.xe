@@ -60,69 +60,23 @@ ENV PATH=$ORACLE_HOME/bin:$PATH
 COPY $CHECK_SPACE_FILE $CONF_FILE $SETUP_LINUX_FILE $INSTALL_DIR/
 COPY $RUN_FILE $PWD_FILE $CHECK_DB_FILE $CREATE_DB_FILE $USER_SCRIPTS_FILE $ORACLE_BASE/
 
-RUN chmod ug+x $INSTALL_DIR/*.sh
-
-RUN sync
-
-RUN $INSTALL_DIR/$CHECK_SPACE_FILE
-
-RUN cd $INSTALL_DIR
-
-RUN yum deplist oracle-database-preinstall-21c
-
-RUN yum -y install expect
-
-RUN mkdir -p $ORACLE_BASE/scripts/setup
-
-RUN mkdir $ORACLE_BASE/scripts/startup
-
-RUN mkdir -p $ORACLE_BASE/scripts/extensions/setup
-
-RUN mkdir $ORACLE_BASE/scripts/extensions/startup
-
-RUN ln -s $ORACLE_BASE/scripts /docker-entrypoint-initdb.d
-
-RUN mkdir -p $ORACLE_BASE/oradata /home/oracle
-
-RUN mkdir -p $ORACLE_HOME
-
-RUN chmod ug+x $ORACLE_BASE/*.sh
-
-RUN yum -y install openssl
-
-RUN yum -y install oracle-database-preinstall-21c
-
-RUN rm -rf /var/cache/yum
-
-RUN ln -s $ORACLE_BASE/$PWD_FILE /home/oracle/
-
-RUN echo oracle:oracle | chpasswd
-
-RUN chown -R oracle:dba $ORACLE_BASE
-
-RUN $INSTALL_DIR/$SETUP_LINUX_FILE
-
-RUN chown -R oracle:oinstall $ORACLE_BASE /home/oracle
-
-RUN sed -i -e 's/\(oracle\s\+hard\s\+nofile\)/# \1/' /etc/security/limits.d/oracle-database-preinstall-21c.conf
-
-RUN unbuffer yum -y install $INSTALL_FILE_1
-
-RUN yum -y remove expect
-
-RUN rm -rf /var/cache/yum
-
-RUN rm -rf /var/tmp/yum-*
-
-RUN mv $INSTALL_DIR/$CONF_FILE /etc/sysconfig/
-
-RUN cd $HOME
-
-RUN rm -rf $INSTALL_DIR
-
-RUN $ORACLE_BASE/oraInventory/orainstRoot.sh
-
-RUN $ORACLE_HOME/root.sh
+RUN chmod ug+x $INSTALL_DIR/*.sh && \
+    sync && \
+    $INSTALL_DIR/$CHECK_SPACE_FILE && \
+    cd $INSTALL_DIR && \
+    yum -y install expect && \
+    $INSTALL_DIR/$SETUP_LINUX_FILE && \
+    chown -R oracle:oinstall $ORACLE_BASE /home/oracle && \
+    sed -i -e 's/\(oracle\s\+hard\s\+nofile\)/# \1/' /etc/security/limits.d/oracle-database-preinstall-21c.conf && \
+    unbuffer yum -y install $INSTALL_FILE_1 && \
+    yum -y remove expect && \
+    rm -rf /var/cache/yum && \
+    rm -rf /var/tmp/yum-* && \
+    mv $INSTALL_DIR/$CONF_FILE /etc/sysconfig/ && \
+    cd $HOME && \
+    rm -rf $INSTALL_DIR && \
+    $ORACLE_BASE/oraInventory/orainstRoot.sh && \
+    $ORACLE_HOME/root.sh
 
 USER oracle
 WORKDIR /home/oracle
