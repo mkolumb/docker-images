@@ -270,7 +270,7 @@ RUN wget -q $INSTALL_FILE_1 && \
 	cd /tmp && rm -rfv *
 
 RUN rm -rf $ORACLE_HOME && \
-	yum -y remove $PACKAGE_NAME && \
+	yum -y -q remove $PACKAGE_NAME && \
 	wget -q $INSTALL_FILE_1 && \ 
 	yum -y localinstall $INSTALL_FILE_2 && \
     rm -rf /var/cache/yum && \
@@ -287,7 +287,7 @@ RUN rm -rf $ORACLE_HOME && \
 	cd /tmp && rm -rfv *
 
 RUN rm -rf $ORACLE_HOME && \
-	yum -y remove $PACKAGE_NAME && \
+	yum -y -q remove $PACKAGE_NAME && \
 	wget -q $INSTALL_FILE_1 && \ 
 	yum -y localinstall $INSTALL_FILE_2 && \
     rm -rf /var/cache/yum && \
@@ -303,7 +303,7 @@ RUN rm -rf $ORACLE_HOME && \
 	cd /tmp && rm -rfv *
 
 RUN rm -rf $ORACLE_HOME && \
-	yum -y remove $PACKAGE_NAME && \
+	yum -y -q remove $PACKAGE_NAME && \
 	wget -q $INSTALL_FILE_1 && \ 
 	yum -y localinstall $INSTALL_FILE_2 && \
     rm -rf /var/cache/yum && \
@@ -318,7 +318,7 @@ RUN rm -rf $ORACLE_HOME && \
 	cd /tmp && rm -rfv *
 
 RUN rm -rf $ORACLE_HOME && \
-	yum -y remove $PACKAGE_NAME && \
+	yum -y -q remove $PACKAGE_NAME && \
 	wget -q $INSTALL_FILE_1 && \ 
 	yum -y localinstall $INSTALL_FILE_2 && \
     rm -rf /var/cache/yum && \
@@ -332,7 +332,7 @@ RUN rm -rf $ORACLE_HOME && \
 	cd /tmp && rm -rfv *
 
 RUN rm -rf $ORACLE_HOME && \
-	yum -y remove $PACKAGE_NAME && \
+	yum -y -q remove $PACKAGE_NAME && \
 	wget -q $INSTALL_FILE_1 && \ 
     yum -y localinstall $INSTALL_FILE_2 && \
     rm -rf /var/cache/yum && \
@@ -345,7 +345,7 @@ RUN rm -rf $ORACLE_HOME && \
 	cd /tmp && rm -rfv *
 
 RUN rm -rf $ORACLE_HOME && \
-	yum -y remove $PACKAGE_NAME && \
+	yum -y -q remove $PACKAGE_NAME && \
 	wget -q $INSTALL_FILE_1 && \ 
     yum -y localinstall $INSTALL_FILE_2 && \
     rm -rf /var/cache/yum && \
@@ -357,7 +357,7 @@ RUN rm -rf $ORACLE_HOME && \
 	cd /tmp && rm -rfv *
 
 RUN rm -rf $ORACLE_HOME && \
-	yum -y remove $PACKAGE_NAME && \
+	yum -y -q remove $PACKAGE_NAME && \
 	wget -q $INSTALL_FILE_1 && \ 
     yum -y localinstall $INSTALL_FILE_2 && \
     rm -rf /var/cache/yum && \
@@ -368,7 +368,7 @@ RUN rm -rf $ORACLE_HOME && \
 	cd /tmp && rm -rfv *
 
 RUN rm -rf $ORACLE_HOME && \
-	yum -y remove $PACKAGE_NAME && \
+	yum -y -q remove $PACKAGE_NAME && \
 	wget -q $INSTALL_FILE_1 && \ 
     yum -y localinstall $INSTALL_FILE_2 && \
     yum -y remove expect && \
