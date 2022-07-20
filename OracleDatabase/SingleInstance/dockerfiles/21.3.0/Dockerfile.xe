@@ -42,6 +42,8 @@ ENV ORACLE_BASE=/opt/oracle \
     INSTALL_FILE_1="https://download.oracle.com/otn-pub/otn_software/db-express/oracle-database-xe-21c-1.0-1.ol7.x86_64.rpm" \
     INSTALL_FILE_2="oracle-database-xe-21c-1.0-1.ol7.x86_64.rpm" \
 	PACKAGE_NAME="oracle-database-xe-21c.x86_64" \
+    DELETER_FILE="deleter.sh" \
+    INSTALLER_FILE="installer.sh" \
     RUN_FILE="runOracle.sh" \
     RUN_FILE_1="runOracle_1.sh" \
     RUN_FILE_2_1="runOracle_2_1.sh" \
@@ -54,10 +56,26 @@ ENV ORACLE_BASE=/opt/oracle \
 	REMOVE_FILE_2="/opt/oracle/product/21c/dbhomeXE/bin/oracle" \
 	REMOVE_FILE_3="/opt/oracle/product/21c/dbhomeXE/lib/libmle.so" \
 	REMOVE_FILE_4="/opt/oracle/product/21c/dbhomeXE/javavm/jdk/jdk8/admin/classes.bin" \
-	REMOVE_DIR_1="/opt/oracle/product/21c/dbhomeXE/bin" \
-	REMOVE_DIR_2="/opt/oracle/product/21c/dbhomeXE/python" \
-	REMOVE_DIR_3="/opt/oracle/product/21c/dbhomeXE/assistants" \
-	REMOVE_DIR_4="/opt/oracle/product/21c/dbhomeXE/rdbms" \
+	REMOVE_DIR_1="/opt/oracle/product/21c/dbhomeXE/bin" \ 
+	REMOVE_DIR_2="/opt/oracle/product/21c/dbhomeXE/python" \ 
+	REMOVE_DIR_3="/opt/oracle/product/21c/dbhomeXE/assistants" \ 
+	REMOVE_DIR_4="/opt/oracle/product/21c/dbhomeXE/rdbms" \ 
+	REMOVE_DIR_5="/opt/oracle/product/21c/dbhomeXE/jdk" \ 
+	REMOVE_DIR_6="/opt/oracle/product/21c/dbhomeXE/javavm" \ 
+	REMOVE_DIR_7="/opt/oracle/product/21c/dbhomeXE/ctx" \ 
+	REMOVE_DIR_8="/opt/oracle/product/21c/dbhomeXE/jlib" \ 
+	REMOVE_DIR_9="/opt/oracle/product/21c/dbhomeXE/lib" \ 
+	REMOVE_DIR_10="/opt/oracle/product/21c/dbhomeXE/oracore" \ 
+	REMOVE_DIR_11="/opt/oracle/product/21c/dbhomeXE/oml4py" \ 
+	REMOVE_DIR_12="/opt/oracle/product/21c/dbhomeXE/perl" \ 
+	REMOVE_DIR_13="/opt/oracle/product/21c/dbhomeXE/md" \ 
+	REMOVE_DIR_14="/opt/oracle/product/21c/dbhomeXE/jdbc" \ 
+	REMOVE_DIR_15="/opt/oracle/product/21c/dbhomeXE/R" \ 
+	REMOVE_DIR_16="/opt/oracle/product/21c/dbhomeXE/install" \ 
+	REMOVE_DIR_17="/opt/oracle/product/21c/dbhomeXE/cv" \ 
+	REMOVE_DIR_18="/opt/oracle/product/21c/dbhomeXE/network" \ 
+	REMOVE_DIR_19="/opt/oracle/product/21c/dbhomeXE/sdk" \ 
+	REMOVE_DIR_20="/opt/oracle/product/21c/dbhomeXE/OPatch" \
     PWD_FILE="setPassword.sh" \
     CREATE_DB_FILE="createDB.sh" \
     CREATE_DB_FILE_1="createDB_1.sh" \
@@ -84,6 +102,8 @@ COPY $RUN_FILE $PWD_FILE $CHECK_DB_FILE $CREATE_DB_FILE $USER_SCRIPTS_FILE $ORAC
 COPY $RUN_FILE_1 $RUN_FILE_2_1 $RUN_FILE_2_2 $RUN_FILE_2_3 $RUN_FILE_2_4 $RUN_FILE_3 $RUN_FILE_4 $INSTALL_DIR/
 COPY $CREATE_DB_FILE_1 $CREATE_DB_FILE_2 $CREATE_DB_FILE_3 $CREATE_DB_FILE_4 $INSTALL_DIR/
 
+COPY $DELETER_FILE $INSTALLER_FILE $INSTALL_DIR/
+
 COPY $RUN_FILE_1 $RUN_FILE_2_1 $RUN_FILE_2_2 $RUN_FILE_2_3 $RUN_FILE_2_4 $RUN_FILE_3 $RUN_FILE_4 $ORACLE_BASE/
 COPY $CREATE_DB_FILE_1 $CREATE_DB_FILE_2 $CREATE_DB_FILE_3 $CREATE_DB_FILE_4 $ORACLE_BASE/
 
@@ -97,275 +117,68 @@ RUN chmod ug+x $INSTALL_DIR/*.sh && \
 	yum clean all && \ 
 	cd /tmp && rm -rfv *
     
-RUN yum -y install wget && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install bc && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install bind-utils && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install binutils && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install ethtool && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install glibc && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install glibc-devel && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install initscripts && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install ksh && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install libaio && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install libgcc && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install libstdc++ && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install make && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install module-init-tools && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install net-tools && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install nfs-utils && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install openssh-clients && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install pam && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install policycoreutils-python && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install procps && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install psmisc && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install smartmontools && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install sysstat && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install tar && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install unzip && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install util-linux-ng && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install xorg-x11-utils && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install xorg-x11-xauth && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install openssl && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-RUN yum -y install oracle-database-preinstall-21c && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
+RUN $INSTALL_DIR/$INSTALLER_FILE "wget"
+RUN $INSTALL_DIR/$INSTALLER_FILE "bc"
+RUN $INSTALL_DIR/$INSTALLER_FILE "bind-utils"
+RUN $INSTALL_DIR/$INSTALLER_FILE "binutils"
+RUN $INSTALL_DIR/$INSTALLER_FILE "ethtool"
+RUN $INSTALL_DIR/$INSTALLER_FILE "glibc"
+RUN $INSTALL_DIR/$INSTALLER_FILE "glibc-devel"
+RUN $INSTALL_DIR/$INSTALLER_FILE "initscripts"
+RUN $INSTALL_DIR/$INSTALLER_FILE "ksh"
+RUN $INSTALL_DIR/$INSTALLER_FILE "libaio"
+RUN $INSTALL_DIR/$INSTALLER_FILE "libgcc"
+RUN $INSTALL_DIR/$INSTALLER_FILE "libstdc++"
+RUN $INSTALL_DIR/$INSTALLER_FILE "make"
+RUN $INSTALL_DIR/$INSTALLER_FILE "module-init-tools"
+RUN $INSTALL_DIR/$INSTALLER_FILE "net-tools"
+RUN $INSTALL_DIR/$INSTALLER_FILE "nfs-utils"
+RUN $INSTALL_DIR/$INSTALLER_FILE "openssh-clients"
+RUN $INSTALL_DIR/$INSTALLER_FILE "pam"
+RUN $INSTALL_DIR/$INSTALLER_FILE "policycoreutils-python"
+RUN $INSTALL_DIR/$INSTALLER_FILE "procps"
+RUN $INSTALL_DIR/$INSTALLER_FILE "psmisc"
+RUN $INSTALL_DIR/$INSTALLER_FILE "smartmontools"
+RUN $INSTALL_DIR/$INSTALLER_FILE "sysstat"
+RUN $INSTALL_DIR/$INSTALLER_FILE "tar"
+RUN $INSTALL_DIR/$INSTALLER_FILE "unzip"
+RUN $INSTALL_DIR/$INSTALLER_FILE "util-linux-ng"
+RUN $INSTALL_DIR/$INSTALLER_FILE "xorg-x11-utils"
+RUN $INSTALL_DIR/$INSTALLER_FILE "xorg-x11-xauth"
+RUN $INSTALL_DIR/$INSTALLER_FILE "openssl"
+RUN $INSTALL_DIR/$INSTALLER_FILE "oracle-database-preinstall-21c"
 
 RUN $INSTALL_DIR/$SETUP_LINUX_FILE && \
     chown -R oracle:oinstall $ORACLE_BASE /home/oracle && \
     sed -i -e 's/\(oracle\s\+hard\s\+nofile\)/# \1/' /etc/security/limits.d/oracle-database-preinstall-21c.conf && \ 
 	cd /tmp && rm -rfv *
 
-RUN wget -q $INSTALL_FILE_1 && \ 
-	yum -y localinstall $INSTALL_FILE_2 && \
-    rm -rf /var/cache/yum && \
-    rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \
-    rm -f $INSTALL_FILE_2 && \
-    rm -f $REMOVE_FILE_1 && \
-    rm -f $REMOVE_FILE_2 && \
-    rm -f $REMOVE_FILE_3 && \
-    rm -f $REMOVE_FILE_4 && \
-    rm -rf $REMOVE_DIR_1 && \
-    rm -rf $REMOVE_DIR_2 && \
-    rm -rf $REMOVE_DIR_3 && \
-    rm -rf $REMOVE_DIR_4 && \ 
-	cd /tmp && rm -rfv *
-
-RUN rm -rf $ORACLE_HOME && \
-	yum -y -q remove $PACKAGE_NAME && \
-	wget -q $INSTALL_FILE_1 && \ 
-	yum -y localinstall $INSTALL_FILE_2 && \
-    rm -rf /var/cache/yum && \
-    rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \
-    rm -f $INSTALL_FILE_2 && \
-    rm -f $REMOVE_FILE_1 && \
-    rm -f $REMOVE_FILE_2 && \
-    rm -f $REMOVE_FILE_3 && \
-    rm -f $REMOVE_FILE_4 && \
-    rm -rf $REMOVE_DIR_1 && \
-    rm -rf $REMOVE_DIR_2 && \
-    rm -rf $REMOVE_DIR_3 && \ 
-	cd /tmp && rm -rfv *
-
-RUN rm -rf $ORACLE_HOME && \
-	yum -y -q remove $PACKAGE_NAME && \
-	wget -q $INSTALL_FILE_1 && \ 
-	yum -y localinstall $INSTALL_FILE_2 && \
-    rm -rf /var/cache/yum && \
-    rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \
-    rm -f $INSTALL_FILE_2 && \
-    rm -f $REMOVE_FILE_1 && \
-    rm -f $REMOVE_FILE_2 && \
-    rm -f $REMOVE_FILE_3 && \
-    rm -f $REMOVE_FILE_4 && \
-    rm -rf $REMOVE_DIR_1 && \
-    rm -rf $REMOVE_DIR_2 && \ 
-	cd /tmp && rm -rfv *
-
-RUN rm -rf $ORACLE_HOME && \
-	yum -y -q remove $PACKAGE_NAME && \
-	wget -q $INSTALL_FILE_1 && \ 
-	yum -y localinstall $INSTALL_FILE_2 && \
-    rm -rf /var/cache/yum && \
-    rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \
-    rm -f $INSTALL_FILE_2 && \
-    rm -f $REMOVE_FILE_1 && \
-    rm -f $REMOVE_FILE_2 && \
-    rm -f $REMOVE_FILE_3 && \
-    rm -f $REMOVE_FILE_4 && \
-    rm -rf $REMOVE_DIR_1 && \ 
-	cd /tmp && rm -rfv *
-
-RUN rm -rf $ORACLE_HOME && \
-	yum -y -q remove $PACKAGE_NAME && \
-	wget -q $INSTALL_FILE_1 && \ 
-	yum -y localinstall $INSTALL_FILE_2 && \
-    rm -rf /var/cache/yum && \
-    rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \
-    rm -f $INSTALL_FILE_2 && \
-    rm -f $REMOVE_FILE_1 && \
-    rm -f $REMOVE_FILE_2 && \
-    rm -f $REMOVE_FILE_3 && \
-    rm -f $REMOVE_FILE_4 && \ 
-	cd /tmp && rm -rfv *
-
-RUN rm -rf $ORACLE_HOME && \
-	yum -y -q remove $PACKAGE_NAME && \
-	wget -q $INSTALL_FILE_1 && \ 
-    yum -y localinstall $INSTALL_FILE_2 && \
-    rm -rf /var/cache/yum && \
-    rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \
-    rm -f $INSTALL_FILE_2 && \
-    rm -f $REMOVE_FILE_1 && \
-    rm -f $REMOVE_FILE_2 && \
-    rm -f $REMOVE_FILE_3 && \ 
-	cd /tmp && rm -rfv *
-
-RUN rm -rf $ORACLE_HOME && \
-	yum -y -q remove $PACKAGE_NAME && \
-	wget -q $INSTALL_FILE_1 && \ 
-    yum -y localinstall $INSTALL_FILE_2 && \
-    rm -rf /var/cache/yum && \
-    rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \
-    rm -f $INSTALL_FILE_2 && \
-    rm -f $REMOVE_FILE_1 && \
-    rm -f $REMOVE_FILE_2 && \ 
-	cd /tmp && rm -rfv *
-
-RUN rm -rf $ORACLE_HOME && \
-	yum -y -q remove $PACKAGE_NAME && \
-	wget -q $INSTALL_FILE_1 && \ 
-    yum -y localinstall $INSTALL_FILE_2 && \
-    rm -rf /var/cache/yum && \
-    rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \
-    rm -f $INSTALL_FILE_2 && \
-    rm -f $REMOVE_FILE_1 && \ 
-	cd /tmp && rm -rfv *
+RUN $INSTALL_DIR/$DELETER_FILE 0
+RUN $INSTALL_DIR/$DELETER_FILE 1
+RUN $INSTALL_DIR/$DELETER_FILE 2
+RUN $INSTALL_DIR/$DELETER_FILE 3
+RUN $INSTALL_DIR/$DELETER_FILE 4
+RUN $INSTALL_DIR/$DELETER_FILE 5
+RUN $INSTALL_DIR/$DELETER_FILE 6
+RUN $INSTALL_DIR/$DELETER_FILE 7
+RUN $INSTALL_DIR/$DELETER_FILE 8
+RUN $INSTALL_DIR/$DELETER_FILE 9
+RUN $INSTALL_DIR/$DELETER_FILE 10
+RUN $INSTALL_DIR/$DELETER_FILE 11
+RUN $INSTALL_DIR/$DELETER_FILE 12
+RUN $INSTALL_DIR/$DELETER_FILE 13
+RUN $INSTALL_DIR/$DELETER_FILE 14
+RUN $INSTALL_DIR/$DELETER_FILE 15
+RUN $INSTALL_DIR/$DELETER_FILE 16
+RUN $INSTALL_DIR/$DELETER_FILE 17
+RUN $INSTALL_DIR/$DELETER_FILE 18
+RUN $INSTALL_DIR/$DELETER_FILE 19
+RUN $INSTALL_DIR/$DELETER_FILE 20
+RUN $INSTALL_DIR/$DELETER_FILE 21
+RUN $INSTALL_DIR/$DELETER_FILE 22
+RUN $INSTALL_DIR/$DELETER_FILE 23
+RUN $INSTALL_DIR/$DELETER_FILE 24
+RUN $INSTALL_DIR/$DELETER_FILE 25
 
 RUN rm -rf $ORACLE_HOME && \
 	yum -y -q remove $PACKAGE_NAME && \
@@ -377,7 +190,6 @@ RUN rm -rf $ORACLE_HOME && \
 	yum clean all && \
     rm -f $INSTALL_FILE_2 && \ 
 	cd /tmp && rm -rfv *
-
    
 RUN mv $INSTALL_DIR/$CONF_FILE /etc/sysconfig/ 
 
