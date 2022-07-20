@@ -253,3 +253,5 @@ rm -rf "$ORACLE_BASE"/admin/$ORACLE_SID
 # clean up zombie shared memory/semaphores
 ipcs -m | awk ' /[0-9]/ {print $2}' | xargs -n1 ipcrm -m 2> /dev/null
 ipcs -s | awk ' /[0-9]/ {print $2}' | xargs -n1 ipcrm -s 2> /dev/null
+
+exit 0;

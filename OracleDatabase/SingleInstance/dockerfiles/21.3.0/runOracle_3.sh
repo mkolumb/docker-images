@@ -122,3 +122,5 @@ fi
 
 # Move database operational files to oradata
 moveFiles;
+
+exit 0;

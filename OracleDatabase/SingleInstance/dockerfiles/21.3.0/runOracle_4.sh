@@ -118,3 +118,5 @@ EOF
 
 # Execute custom provided setup scripts
 "$ORACLE_BASE"/"$USER_SCRIPTS_FILE" "$ORACLE_BASE"/scripts/setup
+
+exit 0;
