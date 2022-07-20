@@ -33,122 +33,122 @@ rm -f $INSTALL_FILE_2
 
 cd /tmp && rm -rfv *
 
-if [ $1 lt 24 ]; then 
+if [ "$1" -lt "24" ]; then 
 	echo "delete file: '$REMOVE_FILE_1'"
 	rm -rf $REMOVE_FILE_1
 fi
 
-if [ $1 lt 23 ]; then 
+if [ "$1" -lt "23" ]; then 
 	echo "delete file: '$REMOVE_FILE_2'"
 	rm -rf $REMOVE_FILE_2
 fi
 
-if [ $1 lt 22 ]; then 
+if [ "$1" -lt "22" ]; then 
 	echo "delete file: '$REMOVE_FILE_3'"
 	rm -rf $REMOVE_FILE_3
 fi
 
-if [ $1 lt 21 ]; then 
+if [ "$1" -lt "21" ]; then 
 	echo "delete file: '$REMOVE_FILE_4'"
 	rm -rf $REMOVE_FILE_4
 fi
 
-if [ $1 lt 20 ]; then 
+if [ "$1" -lt "20" ]; then 
 	echo "delete dir: '$REMOVE_DIR_1'"
 	rm -rf $REMOVE_DIR_1
 fi
 
-if [ $1 lt 19 ]; then 
+if [ "$1" -lt "19" ]; then 
 	echo "delete dir: '$REMOVE_DIR_2'"
 	rm -rf $REMOVE_DIR_2
 fi
 
-if [ $1 lt 18 ]; then 
+if [ "$1" -lt "18" ]; then 
 	echo "delete dir: '$REMOVE_DIR_3'"
 	rm -rf $REMOVE_DIR_3
 fi
 
-if [ $1 lt 17 ]; then 
+if [ "$1" -lt "17" ]; then 
 	echo "delete dir: '$REMOVE_DIR_4'"
 	rm -rf $REMOVE_DIR_4
 fi
 
-if [ $1 lt 16 ]; then 
+if [ "$1" -lt "16" ]; then 
 	echo "delete dir: '$REMOVE_DIR_5'"
 	rm -rf $REMOVE_DIR_5
 fi
 
-if [ $1 lt 15 ]; then 
+if [ "$1" -lt "15" ]; then 
 	echo "delete dir: '$REMOVE_DIR_6'"
 	rm -rf $REMOVE_DIR_6
 fi
 
-if [ $1 lt 14 ]; then 
+if [ "$1" -lt "14" ]; then 
 	echo "delete dir: '$REMOVE_DIR_7'"
 	rm -rf $REMOVE_DIR_7
 fi
 
-if [ $1 lt 13 ]; then 
+if [ "$1" -lt "13" ]; then 
 	echo "delete dir: '$REMOVE_DIR_8'"
 	rm -rf $REMOVE_DIR_8
 fi
 
-if [ $1 lt 12 ]; then 
+if [ "$1" -lt "12" ]; then 
 	echo "delete dir: '$REMOVE_DIR_9'"
 	rm -rf $REMOVE_DIR_9
 fi
 
-if [ $1 lt 11 ]; then 
+if [ "$1" -lt "11" ]; then 
 	echo "delete dir: '$REMOVE_DIR_10'"
 	rm -rf $REMOVE_DIR_10
 fi
 
-if [ $1 lt 10 ]; then 
+if [ "$1" -lt "10" ]; then 
 	echo "delete dir: '$REMOVE_DIR_11'"
 	rm -rf $REMOVE_DIR_11
 fi
 
-if [ $1 lt 9 ]; then 
+if [ "$1" -lt "9" ]; then 
 	echo "delete dir: '$REMOVE_DIR_12'"
 	rm -rf $REMOVE_DIR_12
 fi
 
-if [ $1 lt 8 ]; then 
+if [ "$1" -lt "8" ]; then 
 	echo "delete dir: '$REMOVE_DIR_13'"
 	rm -rf $REMOVE_DIR_13
 fi
 
-if [ $1 lt 7 ]; then 
+if [ "$1" -lt "7" ]; then 
 	echo "delete dir: '$REMOVE_DIR_14'"
 	rm -rf $REMOVE_DIR_14
 fi
 
-if [ $1 lt 6 ]; then 
+if [ "$1" -lt "6" ]; then 
 	echo "delete dir: '$REMOVE_DIR_15'"
 	rm -rf $REMOVE_DIR_15
 fi
 
-if [ $1 lt 5 ]; then 
+if [ "$1" -lt "5" ]; then 
 	echo "delete dir: '$REMOVE_DIR_16'"
 	rm -rf $REMOVE_DIR_16
 fi
 
-if [ $1 lt 4 ]; then 
+if [ "$1" -lt "4" ]; then 
 	echo "delete dir: '$REMOVE_DIR_17'"
 	rm -rf $REMOVE_DIR_17
 fi
 
-if [ $1 lt 3 ]; then 
+if [ "$1" -lt "3" ]; then 
 	echo "delete dir: '$REMOVE_DIR_18'"
 	rm -rf $REMOVE_DIR_18
 fi
 
-if [ $1 lt 2 ]; then 
+if [ "$1" -lt "2" ]; then 
 	echo "delete dir: '$REMOVE_DIR_19'"
 	rm -rf $REMOVE_DIR_19
 fi
 
-if [ $1 lt 1 ]; then 
+if [ "$1" -lt "1" ]; then 
 	echo "delete dir: '$REMOVE_DIR_20'"
 	rm -rf $REMOVE_DIR_20
 fi
