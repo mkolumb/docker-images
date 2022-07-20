@@ -68,7 +68,37 @@ RUN $INSTALL_DIR/$CHECK_SPACE_FILE
 
 RUN cd $INSTALL_DIR
 
+RUN yum deplist oracle-database-preinstall-21c
+
 RUN yum -y install expect
+
+RUN mkdir -p $ORACLE_BASE/scripts/setup
+
+RUN mkdir $ORACLE_BASE/scripts/startup
+
+RUN mkdir -p $ORACLE_BASE/scripts/extensions/setup
+
+RUN mkdir $ORACLE_BASE/scripts/extensions/startup
+
+RUN ln -s $ORACLE_BASE/scripts /docker-entrypoint-initdb.d
+
+RUN mkdir -p $ORACLE_BASE/oradata /home/oracle
+
+RUN mkdir -p $ORACLE_HOME
+
+RUN chmod ug+x $ORACLE_BASE/*.sh
+
+RUN yum -y install openssl
+
+RUN yum -y install oracle-database-preinstall-21c
+
+RUN rm -rf /var/cache/yum
+
+RUN ln -s $ORACLE_BASE/$PWD_FILE /home/oracle/
+
+RUN echo oracle:oracle | chpasswd
+
+RUN chown -R oracle:dba $ORACLE_BASE
 
 RUN $INSTALL_DIR/$SETUP_LINUX_FILE
 
