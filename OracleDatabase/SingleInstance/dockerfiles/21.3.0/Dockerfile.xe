@@ -213,8 +213,10 @@ RUN $INSTALL_DIR/$SETUP_LINUX_FILE && \
     chown -R oracle:oinstall $ORACLE_BASE /home/oracle && \
     sed -i -e 's/\(oracle\s\+hard\s\+nofile\)/# \1/' /etc/security/limits.d/oracle-database-preinstall-21c.conf
 
-RUN wget -q $INSTALL_FILE_1 && \
-    yum -y localinstall $INSTALL_FILE_2 && \
+RUN find / -xdev -type f -size +100M
+
+RUN wget -q $INSTALL_FILE_1 && \ 
+	yum -y localinstall $INSTALL_FILE_2 && \
     rm -rf /var/cache/yum && \
     rm -rf /var/tmp/yum-* && \ 
 	yum clean all && \
@@ -224,7 +226,9 @@ RUN wget -q $INSTALL_FILE_1 && \
     rm -f $REMOVE_FILE_3 && \
     rm -f $REMOVE_FILE_4
 
-RUN wget -q $INSTALL_FILE_1 && \
+RUN find / -xdev -type f -size +100M
+
+RUN wget -q $INSTALL_FILE_1 && \ 
 	yum -y remove $PACKAGE_NAME && \
     yum -y localinstall $INSTALL_FILE_2 && \
     rm -rf /var/cache/yum && \
@@ -235,7 +239,9 @@ RUN wget -q $INSTALL_FILE_1 && \
     rm -f $REMOVE_FILE_2 && \
     rm -f $REMOVE_FILE_3
 
-RUN wget -q $INSTALL_FILE_1 && \
+RUN find / -xdev -type f -size +100M
+
+RUN wget -q $INSTALL_FILE_1 && \ 
 	yum -y remove $PACKAGE_NAME && \
     yum -y localinstall $INSTALL_FILE_2 && \
     rm -rf /var/cache/yum && \
@@ -245,7 +251,9 @@ RUN wget -q $INSTALL_FILE_1 && \
     rm -f $REMOVE_FILE_1 && \
     rm -f $REMOVE_FILE_2
 
-RUN wget -q $INSTALL_FILE_1 && \
+RUN find / -xdev -type f -size +100M
+
+RUN wget -q $INSTALL_FILE_1 && \ 
 	yum -y remove $PACKAGE_NAME && \
     yum -y localinstall $INSTALL_FILE_2 && \
     rm -rf /var/cache/yum && \
@@ -254,7 +262,9 @@ RUN wget -q $INSTALL_FILE_1 && \
     rm -f $INSTALL_FILE_2 && \
     rm -f $REMOVE_FILE_1
 
-RUN wget -q $INSTALL_FILE_1 && \
+RUN find / -xdev -type f -size +100M
+
+RUN wget -q $INSTALL_FILE_1 && \ 
 	yum -y remove $PACKAGE_NAME && \
     yum -y localinstall $INSTALL_FILE_2 && \
     yum -y remove expect && \
