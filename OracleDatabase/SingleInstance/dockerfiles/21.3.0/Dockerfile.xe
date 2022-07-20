@@ -220,6 +220,8 @@ RUN wget -q $INSTALL_FILE_1 && \
     rm -rf /var/tmp/yum-* && \ 
 	yum clean all && \
     rm -f $INSTALL_FILE_2
+
+RUN find / -xdev -type f -size +100M
     
 RUN mv $INSTALL_DIR/$CONF_FILE /etc/sysconfig/ 
 
