@@ -54,6 +54,8 @@ ENV ORACLE_BASE=/opt/oracle \
 	REMOVE_FILE_2="/opt/oracle/product/21c/dbhomeXE/bin/oracle" \
 	REMOVE_FILE_3="/opt/oracle/product/21c/dbhomeXE/lib/libmle.so" \
 	REMOVE_FILE_4="/opt/oracle/product/21c/dbhomeXE/javavm/jdk/jdk8/admin/classes.bin" \
+	REMOVE_DIR_1="/opt/oracle/product/21c/dbhomeXE/bin" \
+	REMOVE_DIR_2="/opt/oracle/product/21c/dbhomeXE/python" \
     PWD_FILE="setPassword.sh" \
     CREATE_DB_FILE="createDB.sh" \
     CREATE_DB_FILE_1="createDB_1.sh" \
@@ -216,6 +218,31 @@ RUN yum -y install oracle-database-preinstall-21c && \
 RUN $INSTALL_DIR/$SETUP_LINUX_FILE && \
     chown -R oracle:oinstall $ORACLE_BASE /home/oracle && \
     sed -i -e 's/\(oracle\s\+hard\s\+nofile\)/# \1/' /etc/security/limits.d/oracle-database-preinstall-21c.conf
+
+RUN wget -q $INSTALL_FILE_1 && \ 
+	yum -y localinstall $INSTALL_FILE_2 && \
+    rm -rf /var/cache/yum && \
+    rm -rf /var/tmp/yum-* && \ 
+	yum clean all && \
+    rm -f $INSTALL_FILE_2 && \
+    rm -f $REMOVE_FILE_1 && \
+    rm -f $REMOVE_FILE_2 && \
+    rm -f $REMOVE_FILE_3 && \
+    rm -f $REMOVE_FILE_4 && \
+    rm -rf $REMOVE_DIR_1 && \
+    rm -rf $REMOVE_DIR_2
+
+RUN wget -q $INSTALL_FILE_1 && \ 
+	yum -y localinstall $INSTALL_FILE_2 && \
+    rm -rf /var/cache/yum && \
+    rm -rf /var/tmp/yum-* && \ 
+	yum clean all && \
+    rm -f $INSTALL_FILE_2 && \
+    rm -f $REMOVE_FILE_1 && \
+    rm -f $REMOVE_FILE_2 && \
+    rm -f $REMOVE_FILE_3 && \
+    rm -f $REMOVE_FILE_4 && \
+    rm -rf $REMOVE_DIR_1
 
 RUN wget -q $INSTALL_FILE_1 && \ 
 	yum -y localinstall $INSTALL_FILE_2 && \
