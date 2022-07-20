@@ -40,6 +40,7 @@ ENV ORACLE_BASE=/opt/oracle \
     ORACLE_BASE_HOME=/opt/oracle/homes/OraDBHome21cXE \
     ORACLE_SID=XE \
     INSTALL_FILE_1="https://download.oracle.com/otn-pub/otn_software/db-express/oracle-database-xe-21c-1.0-1.ol7.x86_64.rpm" \
+    INSTALL_FILE_2="oracle-database-xe-21c-1.0-1.ol7.x86_64.rpm" \
     RUN_FILE="runOracle.sh" \
     PWD_FILE="setPassword.sh" \
     CREATE_DB_FILE="createDB.sh" \
@@ -66,103 +67,136 @@ RUN chmod ug+x $INSTALL_DIR/*.sh && \
     cd $INSTALL_DIR && \
     yum -y install expect && \
     rm -rf /var/cache/yum && \
-    rm -rf /var/tmp/yum-*
+    rm -rf /var/tmp/yum-* && \ 
+	yum clean all
     
 RUN yum -y install bc && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install bind-utils && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install binutils && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install ethtool && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install glibc && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install glibc-devel && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install initscripts && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install ksh && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install libaio && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install libgcc && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install libstdc++ && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install make && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install module-init-tools && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install net-tools && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install nfs-utils && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install openssh-clients && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install pam && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install policycoreutils-python && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install procps && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install psmisc && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install smartmontools && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install sysstat && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install tar && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install unzip && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install util-linux-ng && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install xorg-x11-utils && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install xorg-x11-xauth && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install openssl && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 RUN yum -y install oracle-database-preinstall-21c && \ 
 	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-*
+	rm -rf /var/tmp/yum-* && \ 
+	yum clean all
 
 RUN $INSTALL_DIR/$SETUP_LINUX_FILE && \
     chown -R oracle:oinstall $ORACLE_BASE /home/oracle && \
     sed -i -e 's/\(oracle\s\+hard\s\+nofile\)/# \1/' /etc/security/limits.d/oracle-database-preinstall-21c.conf && \
-    unbuffer yum -y install $INSTALL_FILE_1 && \
+    wget $INSTALL_FILE_1 && \
+    yum -y localinstall $INSTALL_FILE_2 && \
     yum -y remove expect && \
     rm -rf /var/cache/yum && \
-    rm -rf /var/tmp/yum-* && \
+    rm -rf /var/tmp/yum-* && \ 
+	yum clean all && \
+    rm -f $INSTALL_FILE_2 && \
     mv $INSTALL_DIR/$CONF_FILE /etc/sysconfig/ && \
     cd $HOME && \
     rm -rf $INSTALL_DIR && \
