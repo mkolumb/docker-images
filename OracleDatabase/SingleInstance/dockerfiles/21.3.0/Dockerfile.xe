@@ -42,6 +42,10 @@ ENV ORACLE_BASE=/opt/oracle \
     INSTALL_FILE_1="https://download.oracle.com/otn-pub/otn_software/db-express/oracle-database-xe-21c-1.0-1.ol7.x86_64.rpm" \
     INSTALL_FILE_2="oracle-database-xe-21c-1.0-1.ol7.x86_64.rpm" \
     RUN_FILE="runOracle.sh" \
+    RUN_FILE_1="runOracle_1.sh" \
+    RUN_FILE_2="runOracle_2.sh" \
+    RUN_FILE_3="runOracle_3.sh" \
+    RUN_FILE_4="runOracle_4.sh" \
     PWD_FILE="setPassword.sh" \
     CREATE_DB_FILE="createDB.sh" \
     USER_SCRIPTS_FILE="runUserScripts.sh" \
@@ -59,7 +63,7 @@ ENV PATH=$ORACLE_HOME/bin:$PATH
 # Copy binaries
 # -------------
 COPY $CHECK_SPACE_FILE $CONF_FILE $SETUP_LINUX_FILE $INSTALL_DIR/
-COPY $RUN_FILE $PWD_FILE $CHECK_DB_FILE $CREATE_DB_FILE $USER_SCRIPTS_FILE $ORACLE_BASE/
+COPY $RUN_FILE $RUN_FILE_1 $RUN_FILE_2 $RUN_FILE_3 $RUN_FILE_4 $PWD_FILE $CHECK_DB_FILE $CREATE_DB_FILE $USER_SCRIPTS_FILE $ORACLE_BASE/
 
 RUN chmod ug+x $INSTALL_DIR/*.sh && \
     sync && \
@@ -201,7 +205,6 @@ RUN wget -q $INSTALL_FILE_1 && \
     rm -rf /var/cache/yum && \
     rm -rf /var/tmp/yum-* && \ 
 	yum clean all && \
-    rpm $INSTALL_FILE_2 && \
     rm -f $INSTALL_FILE_2
     
 RUN mv $INSTALL_DIR/$CONF_FILE /etc/sysconfig/ && \
@@ -219,5 +222,13 @@ RUN echo 'ORACLE_SID=${ORACLE_SID:-ORCLCDB}; export ORACLE_SID=${ORACLE_SID^^}' 
 
 HEALTHCHECK --interval=1m --start-period=5m --timeout=30s \
    CMD "$ORACLE_BASE/$CHECK_DB_FILE" >/dev/null || exit 1
+
+RUN exec $ORACLE_BASE/$RUN_FILE_1
+
+RUN exec $ORACLE_BASE/$RUN_FILE_2
+
+RUN exec $ORACLE_BASE/$RUN_FILE_3
+
+RUN exec $ORACLE_BASE/$RUN_FILE_4
 
 CMD exec $ORACLE_BASE/$RUN_FILE
