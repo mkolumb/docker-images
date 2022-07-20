@@ -49,6 +49,10 @@ ENV ORACLE_BASE=/opt/oracle \
     RUN_FILE_2_4="runOracle_2_4.sh" \
     RUN_FILE_3="runOracle_3.sh" \
     RUN_FILE_4="runOracle_4.sh" \
+	REMOVE_FILE_1="$ORACLE_HOME/assistants/dbca/templates/XE_Seed_Database.dfb" \
+	REMOVE_FILE_2="$ORACLE_HOME/bin/oracle" \
+	REMOVE_FILE_3="$ORACLE_HOME/lib/libmle.so" \
+	REMOVE_FILE_4="$ORACLE_HOME/javavm/jdk/jdk8/admin/classes.bin" \
     PWD_FILE="setPassword.sh" \
     CREATE_DB_FILE="createDB.sh" \
     CREATE_DB_FILE_1="createDB_1.sh" \
@@ -70,11 +74,6 @@ ENV PATH=$ORACLE_HOME/bin:$PATH
 # Copy binaries
 # -------------
 COPY $CHECK_SPACE_FILE $CONF_FILE $SETUP_LINUX_FILE $INSTALL_DIR/
-COPY $RUN_FILE_1 $RUN_FILE_2_1 $RUN_FILE_2_2 $RUN_FILE_2_3 $RUN_FILE_2_4 $RUN_FILE_3 $RUN_FILE_4 $INSTALL_DIR/
-COPY $CREATE_DB_FILE_1 $CREATE_DB_FILE_2 $CREATE_DB_FILE_3 $CREATE_DB_FILE_4 $INSTALL_DIR/
-
-COPY $RUN_FILE_1 $RUN_FILE_2_1 $RUN_FILE_2_2 $RUN_FILE_2_3 $RUN_FILE_2_4 $RUN_FILE_3 $RUN_FILE_4 $ORACLE_BASE/
-COPY $CREATE_DB_FILE_1 $CREATE_DB_FILE_2 $CREATE_DB_FILE_3 $CREATE_DB_FILE_4 $ORACLE_BASE/
 COPY $RUN_FILE $PWD_FILE $CHECK_DB_FILE $CREATE_DB_FILE $USER_SCRIPTS_FILE $ORACLE_BASE/
 
 RUN chmod ug+x $INSTALL_DIR/*.sh && \
@@ -212,7 +211,49 @@ RUN yum -y install oracle-database-preinstall-21c && \
 RUN $INSTALL_DIR/$SETUP_LINUX_FILE && \
     chown -R oracle:oinstall $ORACLE_BASE /home/oracle && \
     sed -i -e 's/\(oracle\s\+hard\s\+nofile\)/# \1/' /etc/security/limits.d/oracle-database-preinstall-21c.conf
-    
+
+RUN wget -q $INSTALL_FILE_1 && \
+    yum -y localinstall $INSTALL_FILE_2 && \
+    yum -y remove expect && \
+    rm -rf /var/cache/yum && \
+    rm -rf /var/tmp/yum-* && \ 
+	yum clean all && \
+    rm -f $INSTALL_FILE_2 && \
+    rm -f $REMOVE_FILE_1 && \
+    rm -f $REMOVE_FILE_2 && \
+    rm -f $REMOVE_FILE_3 && \
+    rm -f $REMOVE_FILE_4
+
+RUN wget -q $INSTALL_FILE_1 && \
+    yum -y localinstall $INSTALL_FILE_2 && \
+    yum -y remove expect && \
+    rm -rf /var/cache/yum && \
+    rm -rf /var/tmp/yum-* && \ 
+	yum clean all && \
+    rm -f $INSTALL_FILE_2 && \
+    rm -f $REMOVE_FILE_1 && \
+    rm -f $REMOVE_FILE_2 && \
+    rm -f $REMOVE_FILE_3
+
+RUN wget -q $INSTALL_FILE_1 && \
+    yum -y localinstall $INSTALL_FILE_2 && \
+    yum -y remove expect && \
+    rm -rf /var/cache/yum && \
+    rm -rf /var/tmp/yum-* && \ 
+	yum clean all && \
+    rm -f $INSTALL_FILE_2 && \
+    rm -f $REMOVE_FILE_1 && \
+    rm -f $REMOVE_FILE_2
+
+RUN wget -q $INSTALL_FILE_1 && \
+    yum -y localinstall $INSTALL_FILE_2 && \
+    yum -y remove expect && \
+    rm -rf /var/cache/yum && \
+    rm -rf /var/tmp/yum-* && \ 
+	yum clean all && \
+    rm -f $INSTALL_FILE_2 && \
+    rm -f $REMOVE_FILE_1
+
 RUN wget -q $INSTALL_FILE_1 && \
     yum -y localinstall $INSTALL_FILE_2 && \
     yum -y remove expect && \
@@ -220,6 +261,12 @@ RUN wget -q $INSTALL_FILE_1 && \
     rm -rf /var/tmp/yum-* && \ 
 	yum clean all && \
     rm -f $INSTALL_FILE_2
+
+COPY $RUN_FILE_1 $RUN_FILE_2_1 $RUN_FILE_2_2 $RUN_FILE_2_3 $RUN_FILE_2_4 $RUN_FILE_3 $RUN_FILE_4 $INSTALL_DIR/
+COPY $CREATE_DB_FILE_1 $CREATE_DB_FILE_2 $CREATE_DB_FILE_3 $CREATE_DB_FILE_4 $INSTALL_DIR/
+
+COPY $RUN_FILE_1 $RUN_FILE_2_1 $RUN_FILE_2_2 $RUN_FILE_2_3 $RUN_FILE_2_4 $RUN_FILE_3 $RUN_FILE_4 $ORACLE_BASE/
+COPY $CREATE_DB_FILE_1 $CREATE_DB_FILE_2 $CREATE_DB_FILE_3 $CREATE_DB_FILE_4 $ORACLE_BASE/
 
 RUN find / -xdev -type f -size +100M
     
@@ -241,6 +288,8 @@ RUN $INSTALL_DIR/$RUN_FILE_4
 
 RUN cd $HOME && \
     rm -rf $INSTALL_DIR
+
+RUN find / -xdev -type f -size +100M
     
 RUN $ORACLE_BASE/oraInventory/orainstRoot.sh && \
     $ORACLE_HOME/root.sh
