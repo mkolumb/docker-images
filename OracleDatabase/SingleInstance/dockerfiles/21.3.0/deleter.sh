@@ -15,13 +15,20 @@
 
 set -e
 
-rm -rf $ORACLE_HOME && \
-yum -y -q remove $PACKAGE_NAME && \
-wget -q $INSTALL_FILE_1 && \
-yum -y localinstall $INSTALL_FILE_2 && \
-rm -rf /var/cache/yum && \
-rm -rf /var/tmp/yum-* && \
-yum clean all && \
+rm -rf $ORACLE_HOME
+
+yum -y -q remove $PACKAGE_NAME > /dev/null
+
+wget -q $INSTALL_FILE_1
+
+yum -y localinstall $INSTALL_FILE_2
+
+rm -rf /var/cache/yum
+
+rm -rf /var/tmp/yum-*
+
+yum clean all
+
 rm -f $INSTALL_FILE_2
 
 cd /tmp && rm -rfv *
