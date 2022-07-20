@@ -118,7 +118,7 @@ for x in $EXTENSIONS; do
     echo "Could not find extension directory '$x'";
     exit 1;
   }
-  docker build --force-rm=true --build-arg BASE_IMAGE="$BASE_IMAGE" \
+  docker build --force-rm=true --no-cache=true --build-arg BASE_IMAGE="$BASE_IMAGE" \
        $DOCKEROPS $PROXY_SETTINGS -t $IMAGE_NAME -f $DOCKERFILE . || {
   echo ""
   echo "ERROR: Oracle Database Docker Image was NOT successfully created."
