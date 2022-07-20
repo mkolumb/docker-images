@@ -208,10 +208,6 @@ RUN yum -y install oracle-database-preinstall-21c && \
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
 	yum clean all
-RUN yum -y install find && \ 
-	rm -rf /var/cache/yum && \ 
-	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
 
 RUN $INSTALL_DIR/$SETUP_LINUX_FILE && \
     chown -R oracle:oinstall $ORACLE_BASE /home/oracle && \

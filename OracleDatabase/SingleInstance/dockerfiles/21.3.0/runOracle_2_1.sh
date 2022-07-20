@@ -107,6 +107,20 @@ EOF
    lsnrctl stop
 }
 
+# Read-only Oracle Home Config
+ORACLE_BASE_CONFIG=$("$ORACLE_HOME"/bin/orabaseconfig)
+export ORACLE_BASE_CONFIG
+
+# Default for ORACLE PDB
+export ORACLE_PDB=${ORACLE_PDB:-ORCLPDB1}
+
+# Make ORACLE_PDB upper case
+# Github issue # 984
+export ORACLE_PDB=${ORACLE_PDB^^}
+
+# Default for ORACLE CHARACTERSET
+export ORACLE_CHARACTERSET=${ORACLE_CHARACTERSET:-AL32UTF8}
+
 ###################################
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! #
 ############# MAIN ################
