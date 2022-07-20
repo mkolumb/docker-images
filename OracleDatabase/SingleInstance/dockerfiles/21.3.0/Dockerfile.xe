@@ -79,6 +79,8 @@ COPY $RUN_FILE $PWD_FILE $CHECK_DB_FILE $CREATE_DB_FILE $USER_SCRIPTS_FILE $ORAC
 
 RUN chmod ug+x $INSTALL_DIR/*.sh && \
     sync && \
+	chmod ug+x $ORACLE_BASE/*.sh && \
+    sync && \
     $INSTALL_DIR/$CHECK_SPACE_FILE && \
     cd $INSTALL_DIR && \
     yum -y install expect && \
@@ -219,8 +221,9 @@ RUN wget -q $INSTALL_FILE_1 && \
 	yum clean all && \
     rm -f $INSTALL_FILE_2
     
-RUN mv $INSTALL_DIR/$CONF_FILE /etc/sysconfig/ && \
-    cd $HOME && \
+RUN mv $INSTALL_DIR/$CONF_FILE /etc/sysconfig/ 
+
+RUN cd $HOME && \
     rm -rf $INSTALL_DIR
     
 RUN $ORACLE_BASE/oraInventory/orainstRoot.sh && \
@@ -235,18 +238,18 @@ RUN echo 'ORACLE_SID=${ORACLE_SID:-ORCLCDB}; export ORACLE_SID=${ORACLE_SID^^}' 
 HEALTHCHECK --interval=1m --start-period=5m --timeout=30s \
    CMD "$ORACLE_BASE/$CHECK_DB_FILE" >/dev/null || exit 1
 
-RUN $INSTALL_DIR/$RUN_FILE_1
+RUN $ORACLE_BASE/$RUN_FILE_1
 
-RUN $INSTALL_DIR/$RUN_FILE_2_1
+RUN $ORACLE_BASE/$RUN_FILE_2_1
 
-RUN $INSTALL_DIR/$RUN_FILE_2_2
+RUN $ORACLE_BASE/$RUN_FILE_2_2
 
-RUN $INSTALL_DIR/$RUN_FILE_2_3
+RUN $ORACLE_BASE/$RUN_FILE_2_3
 
-RUN $INSTALL_DIR/$RUN_FILE_2_4
+RUN $ORACLE_BASE/$RUN_FILE_2_4
 
-RUN $INSTALL_DIR/$RUN_FILE_3
+RUN $ORACLE_BASE/$RUN_FILE_3
 
-RUN $INSTALL_DIR/$RUN_FILE_4
+RUN $ORACLE_BASE/$RUN_FILE_4
 
 CMD exec $ORACLE_BASE/$RUN_FILE
