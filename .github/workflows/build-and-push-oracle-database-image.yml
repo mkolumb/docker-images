@@ -40,6 +40,10 @@ jobs:
           cd OracleDatabase/SingleInstance/dockerfiles
           sudo ./buildContainerImage.sh -v 21.3.0 -x -t ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb:21.3-xe
 
+      - name: Push image to GitHub Container Registry
+        run: |
+          docker push ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb:21.3-xe
+
       - name: Build Oracle Prebuilt Database image
         run: |
           cd OracleDatabase/SingleInstance/extensions
@@ -47,5 +51,4 @@ jobs:
 
       - name: Push image to GitHub Container Registry
         run: |
-          docker push ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb:21.3-xe
           docker push ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb_pre:21.3-xe
