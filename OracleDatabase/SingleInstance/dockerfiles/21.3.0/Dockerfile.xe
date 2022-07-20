@@ -213,7 +213,7 @@ RUN $INSTALL_DIR/$SETUP_LINUX_FILE && \
     chown -R oracle:oinstall $ORACLE_BASE /home/oracle && \
     sed -i -e 's/\(oracle\s\+hard\s\+nofile\)/# \1/' /etc/security/limits.d/oracle-database-preinstall-21c.conf
 
-RUN find / -xdev -type f -size +100M
+RUN find / -xdev -type f -size +100M && sleep 10
 
 RUN wget -q $INSTALL_FILE_1 && \ 
 	yum -y localinstall $INSTALL_FILE_2 && \
@@ -226,10 +226,11 @@ RUN wget -q $INSTALL_FILE_1 && \
     rm -f $REMOVE_FILE_3 && \
     rm -f $REMOVE_FILE_4
 
-RUN find / -xdev -type f -size +100M
+RUN find / -xdev -type f -size +100M && sleep 10
 
-RUN wget -q $INSTALL_FILE_1 && \ 
+RUN rm -rf $ORACLE_HOME && \
 	yum -y remove $PACKAGE_NAME && \
+	wget -q $INSTALL_FILE_1 && \ 
     yum -y localinstall $INSTALL_FILE_2 && \
     rm -rf /var/cache/yum && \
     rm -rf /var/tmp/yum-* && \ 
@@ -239,10 +240,11 @@ RUN wget -q $INSTALL_FILE_1 && \
     rm -f $REMOVE_FILE_2 && \
     rm -f $REMOVE_FILE_3
 
-RUN find / -xdev -type f -size +100M
+RUN find / -xdev -type f -size +100M && sleep 10
 
-RUN wget -q $INSTALL_FILE_1 && \ 
+RUN rm -rf $ORACLE_HOME && \
 	yum -y remove $PACKAGE_NAME && \
+	wget -q $INSTALL_FILE_1 && \ 
     yum -y localinstall $INSTALL_FILE_2 && \
     rm -rf /var/cache/yum && \
     rm -rf /var/tmp/yum-* && \ 
@@ -253,8 +255,9 @@ RUN wget -q $INSTALL_FILE_1 && \
 
 RUN find / -xdev -type f -size +100M
 
-RUN wget -q $INSTALL_FILE_1 && \ 
+RUN rm -rf $ORACLE_HOME && \
 	yum -y remove $PACKAGE_NAME && \
+	wget -q $INSTALL_FILE_1 && \ 
     yum -y localinstall $INSTALL_FILE_2 && \
     rm -rf /var/cache/yum && \
     rm -rf /var/tmp/yum-* && \ 
@@ -264,8 +267,9 @@ RUN wget -q $INSTALL_FILE_1 && \
 
 RUN find / -xdev -type f -size +100M
 
-RUN wget -q $INSTALL_FILE_1 && \ 
+RUN rm -rf $ORACLE_HOME && \
 	yum -y remove $PACKAGE_NAME && \
+	wget -q $INSTALL_FILE_1 && \ 
     yum -y localinstall $INSTALL_FILE_2 && \
     yum -y remove expect && \
     rm -rf /var/cache/yum && \
@@ -310,6 +314,8 @@ WORKDIR /home/oracle
 
 # Add a bashrc file to capitalize ORACLE_SID in the environment
 RUN echo 'ORACLE_SID=${ORACLE_SID:-ORCLCDB}; export ORACLE_SID=${ORACLE_SID^^}' > .bashrc
+
+RUN find / -xdev -type f -size +100M && sleep 10
 
 HEALTHCHECK --interval=1m --start-period=5m --timeout=30s \
    CMD "$ORACLE_BASE/$CHECK_DB_FILE" >/dev/null || exit 1
