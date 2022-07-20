@@ -19,9 +19,9 @@ rm -rf $ORACLE_HOME
 
 yum -y -q remove $PACKAGE_NAME > /dev/null
 
-cp "/download/$INSTALL_FILE_2" "$INSTALL_FILE_2"
+wget -q $INSTALL_FILE_1
 
-yum -y localinstall $INSTALL_FILE_2
+unbuffer yum -y localinstall $INSTALL_FILE_2
 
 rm -rf /var/cache/yum
 
