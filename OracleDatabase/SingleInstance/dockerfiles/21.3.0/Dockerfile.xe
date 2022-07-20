@@ -149,6 +149,12 @@ RUN yum -y install xorg-x11-utils && \
 RUN yum -y install xorg-x11-xauth && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-*
+RUN yum -y openssl && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y oracle-database-preinstall-21c && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
 
 RUN $INSTALL_DIR/$SETUP_LINUX_FILE && \
     chown -R oracle:oinstall $ORACLE_BASE /home/oracle && \
