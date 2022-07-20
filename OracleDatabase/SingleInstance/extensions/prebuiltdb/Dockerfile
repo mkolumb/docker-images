@@ -34,4 +34,5 @@ ENV ORACLE_PWD=${ORACLE_PWD}
 ENV AUTO_MEM_CALCULATION=${AUTO_MEM_CALCULATION:-false}
 
 # Creating the database
-RUN $ORACLE_BASE/$RUN_FILE --nowait
+RUN $ORACLE_BASE/$RUN_FILE --nowait && \ 
+	cd /tmp && rm -rfv *

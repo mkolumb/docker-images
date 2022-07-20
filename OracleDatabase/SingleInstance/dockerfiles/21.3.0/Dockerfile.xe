@@ -94,132 +94,164 @@ RUN chmod ug+x $INSTALL_DIR/*.sh && \
     yum -y install expect && \
     rm -rf /var/cache/yum && \
     rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
     
 RUN yum -y install wget && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install bc && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install bind-utils && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install binutils && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install ethtool && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install glibc && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install glibc-devel && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install initscripts && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install ksh && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install libaio && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install libgcc && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install libstdc++ && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install make && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install module-init-tools && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install net-tools && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install nfs-utils && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install openssh-clients && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install pam && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install policycoreutils-python && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install procps && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install psmisc && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install smartmontools && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install sysstat && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install tar && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install unzip && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install util-linux-ng && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install xorg-x11-utils && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install xorg-x11-xauth && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install openssl && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 RUN yum -y install oracle-database-preinstall-21c && \ 
 	rm -rf /var/cache/yum && \ 
 	rm -rf /var/tmp/yum-* && \ 
-	yum clean all
+	yum clean all && \ 
+	cd /tmp && rm -rfv *
 
 RUN $INSTALL_DIR/$SETUP_LINUX_FILE && \
     chown -R oracle:oinstall $ORACLE_BASE /home/oracle && \
-    sed -i -e 's/\(oracle\s\+hard\s\+nofile\)/# \1/' /etc/security/limits.d/oracle-database-preinstall-21c.conf
+    sed -i -e 's/\(oracle\s\+hard\s\+nofile\)/# \1/' /etc/security/limits.d/oracle-database-preinstall-21c.conf && \ 
+	cd /tmp && rm -rfv *
 
 RUN wget -q $INSTALL_FILE_1 && \ 
 	yum -y localinstall $INSTALL_FILE_2 && \
@@ -234,7 +266,8 @@ RUN wget -q $INSTALL_FILE_1 && \
     rm -rf $REMOVE_DIR_1 && \
     rm -rf $REMOVE_DIR_2 && \
     rm -rf $REMOVE_DIR_3 && \
-    rm -rf $REMOVE_DIR_4
+    rm -rf $REMOVE_DIR_4 && \ 
+	cd /tmp && rm -rfv *
 
 RUN rm -rf $ORACLE_HOME && \
 	yum -y remove $PACKAGE_NAME && \
@@ -250,7 +283,8 @@ RUN rm -rf $ORACLE_HOME && \
     rm -f $REMOVE_FILE_4 && \
     rm -rf $REMOVE_DIR_1 && \
     rm -rf $REMOVE_DIR_2 && \
-    rm -rf $REMOVE_DIR_3
+    rm -rf $REMOVE_DIR_3 && \ 
+	cd /tmp && rm -rfv *
 
 RUN rm -rf $ORACLE_HOME && \
 	yum -y remove $PACKAGE_NAME && \
@@ -265,7 +299,8 @@ RUN rm -rf $ORACLE_HOME && \
     rm -f $REMOVE_FILE_3 && \
     rm -f $REMOVE_FILE_4 && \
     rm -rf $REMOVE_DIR_1 && \
-    rm -rf $REMOVE_DIR_2
+    rm -rf $REMOVE_DIR_2 && \ 
+	cd /tmp && rm -rfv *
 
 RUN rm -rf $ORACLE_HOME && \
 	yum -y remove $PACKAGE_NAME && \
@@ -279,7 +314,8 @@ RUN rm -rf $ORACLE_HOME && \
     rm -f $REMOVE_FILE_2 && \
     rm -f $REMOVE_FILE_3 && \
     rm -f $REMOVE_FILE_4 && \
-    rm -rf $REMOVE_DIR_1
+    rm -rf $REMOVE_DIR_1 && \ 
+	cd /tmp && rm -rfv *
 
 RUN rm -rf $ORACLE_HOME && \
 	yum -y remove $PACKAGE_NAME && \
@@ -292,7 +328,8 @@ RUN rm -rf $ORACLE_HOME && \
     rm -f $REMOVE_FILE_1 && \
     rm -f $REMOVE_FILE_2 && \
     rm -f $REMOVE_FILE_3 && \
-    rm -f $REMOVE_FILE_4
+    rm -f $REMOVE_FILE_4 && \ 
+	cd /tmp && rm -rfv *
 
 RUN rm -rf $ORACLE_HOME && \
 	yum -y remove $PACKAGE_NAME && \
@@ -304,7 +341,8 @@ RUN rm -rf $ORACLE_HOME && \
     rm -f $INSTALL_FILE_2 && \
     rm -f $REMOVE_FILE_1 && \
     rm -f $REMOVE_FILE_2 && \
-    rm -f $REMOVE_FILE_3
+    rm -f $REMOVE_FILE_3 && \ 
+	cd /tmp && rm -rfv *
 
 RUN rm -rf $ORACLE_HOME && \
 	yum -y remove $PACKAGE_NAME && \
@@ -315,7 +353,8 @@ RUN rm -rf $ORACLE_HOME && \
 	yum clean all && \
     rm -f $INSTALL_FILE_2 && \
     rm -f $REMOVE_FILE_1 && \
-    rm -f $REMOVE_FILE_2
+    rm -f $REMOVE_FILE_2 && \ 
+	cd /tmp && rm -rfv *
 
 RUN rm -rf $ORACLE_HOME && \
 	yum -y remove $PACKAGE_NAME && \
@@ -325,7 +364,8 @@ RUN rm -rf $ORACLE_HOME && \
     rm -rf /var/tmp/yum-* && \ 
 	yum clean all && \
     rm -f $INSTALL_FILE_2 && \
-    rm -f $REMOVE_FILE_1
+    rm -f $REMOVE_FILE_1 && \ 
+	cd /tmp && rm -rfv *
 
 RUN rm -rf $ORACLE_HOME && \
 	yum -y remove $PACKAGE_NAME && \
@@ -335,16 +375,19 @@ RUN rm -rf $ORACLE_HOME && \
     rm -rf /var/cache/yum && \
     rm -rf /var/tmp/yum-* && \ 
 	yum clean all && \
-    rm -f $INSTALL_FILE_2
+    rm -f $INSTALL_FILE_2 && \ 
+	cd /tmp && rm -rfv *
 
    
 RUN mv $INSTALL_DIR/$CONF_FILE /etc/sysconfig/ 
 
 RUN cd $HOME && \
-    rm -rf $INSTALL_DIR
+    rm -rf $INSTALL_DIR && \ 
+	cd /tmp && rm -rfv *
     
 RUN $ORACLE_BASE/oraInventory/orainstRoot.sh && \
-    $ORACLE_HOME/root.sh
+    $ORACLE_HOME/root.sh && \ 
+	cd /tmp && rm -rfv *
 
 USER oracle
 WORKDIR /home/oracle
