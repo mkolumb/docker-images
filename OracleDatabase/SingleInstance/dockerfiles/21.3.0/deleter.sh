@@ -19,7 +19,7 @@ rm -rf $ORACLE_HOME
 
 yum -y -q remove $PACKAGE_NAME > /dev/null
 
-wget -q $INSTALL_FILE_1
+cp "/download/$INSTALL_FILE_2" "$INSTALL_FILE_2"
 
 yum -y localinstall $INSTALL_FILE_2
 

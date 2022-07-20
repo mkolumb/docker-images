@@ -153,36 +153,36 @@ RUN $INSTALL_DIR/$SETUP_LINUX_FILE && \
     sed -i -e 's/\(oracle\s\+hard\s\+nofile\)/# \1/' /etc/security/limits.d/oracle-database-preinstall-21c.conf && \ 
 	cd /tmp && rm -rfv *
 
-RUN $INSTALL_DIR/$DELETER_FILE 0
-RUN $INSTALL_DIR/$DELETER_FILE 1
-RUN $INSTALL_DIR/$DELETER_FILE 2
-RUN $INSTALL_DIR/$DELETER_FILE 3
-RUN $INSTALL_DIR/$DELETER_FILE 4
-RUN $INSTALL_DIR/$DELETER_FILE 5
-RUN $INSTALL_DIR/$DELETER_FILE 6
-RUN $INSTALL_DIR/$DELETER_FILE 7
-RUN $INSTALL_DIR/$DELETER_FILE 8
-RUN $INSTALL_DIR/$DELETER_FILE 9
-RUN $INSTALL_DIR/$DELETER_FILE 10
-RUN $INSTALL_DIR/$DELETER_FILE 11
-RUN $INSTALL_DIR/$DELETER_FILE 12
-RUN $INSTALL_DIR/$DELETER_FILE 13
-RUN $INSTALL_DIR/$DELETER_FILE 14
-RUN $INSTALL_DIR/$DELETER_FILE 15
-RUN $INSTALL_DIR/$DELETER_FILE 16
-RUN $INSTALL_DIR/$DELETER_FILE 17
-RUN $INSTALL_DIR/$DELETER_FILE 18
-RUN $INSTALL_DIR/$DELETER_FILE 19
-RUN $INSTALL_DIR/$DELETER_FILE 20
-RUN $INSTALL_DIR/$DELETER_FILE 21
-RUN $INSTALL_DIR/$DELETER_FILE 22
-RUN $INSTALL_DIR/$DELETER_FILE 23
-RUN $INSTALL_DIR/$DELETER_FILE 24
-RUN $INSTALL_DIR/$DELETER_FILE 25
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 0
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 1
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 2
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 3
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 4
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 5
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 6
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 7
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 8
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 9
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 10
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 11
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 12
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 13
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 14
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 15
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 16
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 17
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 18
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 19
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 20
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 21
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 22
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 23
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 24
+RUN --mount=type=bind,source=/,target=/download,readonly $INSTALL_DIR/$DELETER_FILE 25
 
-RUN rm -rf $ORACLE_HOME && \
+RUN --mount=type=bind,source=/,target=/download,readonly rm -rf $ORACLE_HOME && \
 	yum -y -q remove $PACKAGE_NAME && \
-	wget -q $INSTALL_FILE_1 && \ 
+	cp "/download/$INSTALL_FILE_2" "$INSTALL_FILE_2" && \ 
     yum -y localinstall $INSTALL_FILE_2 && \
     yum -y remove expect && \
     rm -rf /var/cache/yum && \
