@@ -79,8 +79,6 @@ COPY $RUN_FILE $PWD_FILE $CHECK_DB_FILE $CREATE_DB_FILE $USER_SCRIPTS_FILE $ORAC
 
 RUN chmod ug+x $INSTALL_DIR/*.sh && \
     sync && \
-	chmod ug+x $ORACLE_BASE/*.sh && \
-    sync && \
     $INSTALL_DIR/$CHECK_SPACE_FILE && \
     cd $INSTALL_DIR && \
     yum -y install expect && \
