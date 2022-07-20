@@ -65,7 +65,92 @@ RUN chmod ug+x $INSTALL_DIR/*.sh && \
     $INSTALL_DIR/$CHECK_SPACE_FILE && \
     cd $INSTALL_DIR && \
     yum -y install expect && \
-    $INSTALL_DIR/$SETUP_LINUX_FILE && \
+    rm -rf /var/cache/yum && \
+    rm -rf /var/tmp/yum-*
+    
+RUN yum -y install bc && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install bind-utils && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install binutils && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install ethtool && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install glibc && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install glibc-devel && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install initscripts && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install ksh && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install libaio && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install libgcc && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install libstdc++ && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install make && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install module-init-tools && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install net-tools && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install nfs-utils && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install openssh-clients && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install pam && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install policycoreutils-python && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install procps && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install psmisc && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install smartmontools && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install sysstat && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install tar && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install unzip && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install util-linux-ng && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install xorg-x11-utils && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+RUN yum -y install xorg-x11-xauth && \ 
+	rm -rf /var/cache/yum && \ 
+	rm -rf /var/tmp/yum-*
+
+RUN $INSTALL_DIR/$SETUP_LINUX_FILE && \
     chown -R oracle:oinstall $ORACLE_BASE /home/oracle && \
     sed -i -e 's/\(oracle\s\+hard\s\+nofile\)/# \1/' /etc/security/limits.d/oracle-database-preinstall-21c.conf && \
     unbuffer yum -y install $INSTALL_FILE_1 && \
