@@ -193,18 +193,21 @@ RUN yum -y install oracle-database-preinstall-21c && \
 
 RUN $INSTALL_DIR/$SETUP_LINUX_FILE && \
     chown -R oracle:oinstall $ORACLE_BASE /home/oracle && \
-    sed -i -e 's/\(oracle\s\+hard\s\+nofile\)/# \1/' /etc/security/limits.d/oracle-database-preinstall-21c.conf && \
-    wget $INSTALL_FILE_1 && \
+    sed -i -e 's/\(oracle\s\+hard\s\+nofile\)/# \1/' /etc/security/limits.d/oracle-database-preinstall-21c.conf
+    
+RUN wget $INSTALL_FILE_1 && \
     yum -y localinstall $INSTALL_FILE_2 && \
     yum -y remove expect && \
     rm -rf /var/cache/yum && \
     rm -rf /var/tmp/yum-* && \ 
 	yum clean all && \
-    rm -f $INSTALL_FILE_2 && \
-    mv $INSTALL_DIR/$CONF_FILE /etc/sysconfig/ && \
+    rm -f $INSTALL_FILE_2
+    
+RUN mv $INSTALL_DIR/$CONF_FILE /etc/sysconfig/ && \
     cd $HOME && \
-    rm -rf $INSTALL_DIR && \
-    $ORACLE_BASE/oraInventory/orainstRoot.sh && \
+    rm -rf $INSTALL_DIR
+    
+RUN $ORACLE_BASE/oraInventory/orainstRoot.sh && \
     $ORACLE_HOME/root.sh
 
 USER oracle
