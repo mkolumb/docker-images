@@ -56,6 +56,8 @@ ENV ORACLE_BASE=/opt/oracle \
 	REMOVE_FILE_4="/opt/oracle/product/21c/dbhomeXE/javavm/jdk/jdk8/admin/classes.bin" \
 	REMOVE_DIR_1="/opt/oracle/product/21c/dbhomeXE/bin" \
 	REMOVE_DIR_2="/opt/oracle/product/21c/dbhomeXE/python" \
+	REMOVE_DIR_3="/opt/oracle/product/21c/dbhomeXE/assistants" \
+	REMOVE_DIR_4="/opt/oracle/product/21c/dbhomeXE/rdbms" \
     PWD_FILE="setPassword.sh" \
     CREATE_DB_FILE="createDB.sh" \
     CREATE_DB_FILE_1="createDB_1.sh" \
@@ -230,9 +232,44 @@ RUN wget -q $INSTALL_FILE_1 && \
     rm -f $REMOVE_FILE_3 && \
     rm -f $REMOVE_FILE_4 && \
     rm -rf $REMOVE_DIR_1 && \
+    rm -rf $REMOVE_DIR_2 && \
+    rm -rf $REMOVE_DIR_3 && \
+    rm -rf $REMOVE_DIR_4
+
+RUN rm -rf $ORACLE_HOME && \
+	yum -y remove $PACKAGE_NAME && \
+	wget -q $INSTALL_FILE_1 && \ 
+	yum -y localinstall $INSTALL_FILE_2 && \
+    rm -rf /var/cache/yum && \
+    rm -rf /var/tmp/yum-* && \ 
+	yum clean all && \
+    rm -f $INSTALL_FILE_2 && \
+    rm -f $REMOVE_FILE_1 && \
+    rm -f $REMOVE_FILE_2 && \
+    rm -f $REMOVE_FILE_3 && \
+    rm -f $REMOVE_FILE_4 && \
+    rm -rf $REMOVE_DIR_1 && \
+    rm -rf $REMOVE_DIR_2 && \
+    rm -rf $REMOVE_DIR_3
+
+RUN rm -rf $ORACLE_HOME && \
+	yum -y remove $PACKAGE_NAME && \
+	wget -q $INSTALL_FILE_1 && \ 
+	yum -y localinstall $INSTALL_FILE_2 && \
+    rm -rf /var/cache/yum && \
+    rm -rf /var/tmp/yum-* && \ 
+	yum clean all && \
+    rm -f $INSTALL_FILE_2 && \
+    rm -f $REMOVE_FILE_1 && \
+    rm -f $REMOVE_FILE_2 && \
+    rm -f $REMOVE_FILE_3 && \
+    rm -f $REMOVE_FILE_4 && \
+    rm -rf $REMOVE_DIR_1 && \
     rm -rf $REMOVE_DIR_2
 
-RUN wget -q $INSTALL_FILE_1 && \ 
+RUN rm -rf $ORACLE_HOME && \
+	yum -y remove $PACKAGE_NAME && \
+	wget -q $INSTALL_FILE_1 && \ 
 	yum -y localinstall $INSTALL_FILE_2 && \
     rm -rf /var/cache/yum && \
     rm -rf /var/tmp/yum-* && \ 
@@ -244,7 +281,9 @@ RUN wget -q $INSTALL_FILE_1 && \
     rm -f $REMOVE_FILE_4 && \
     rm -rf $REMOVE_DIR_1
 
-RUN wget -q $INSTALL_FILE_1 && \ 
+RUN rm -rf $ORACLE_HOME && \
+	yum -y remove $PACKAGE_NAME && \
+	wget -q $INSTALL_FILE_1 && \ 
 	yum -y localinstall $INSTALL_FILE_2 && \
     rm -rf /var/cache/yum && \
     rm -rf /var/tmp/yum-* && \ 
