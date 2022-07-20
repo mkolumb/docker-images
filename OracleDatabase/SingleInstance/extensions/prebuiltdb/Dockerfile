@@ -34,17 +34,4 @@ ENV ORACLE_PWD=${ORACLE_PWD}
 ENV AUTO_MEM_CALCULATION=${AUTO_MEM_CALCULATION:-false}
 
 # Creating the database
-# RUN $ORACLE_BASE/$RUN_FILE_1
-# RUN $ORACLE_BASE/$RUN_FILE_2_1
-# RUN $ORACLE_BASE/$RUN_FILE_2_2
-# RUN $ORACLE_BASE/$RUN_FILE_2_3
-
 RUN $ORACLE_BASE/$RUN_FILE --nowait
-
-# USER root
-
-# RUN du -a / | sort -n -r | head -n 15 && sleep 15
-
-# RUN find / -xdev -type f -size +100M && sleep 11
-
-# USER oracle
