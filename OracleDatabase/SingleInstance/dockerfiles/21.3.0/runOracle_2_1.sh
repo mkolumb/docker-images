@@ -114,4 +114,4 @@ EOF
 ###################################
 
 # Create database
-"$ORACLE_BASE"/"$CREATE_DB_FILE" $ORACLE_SID "$ORACLE_PDB" "$ORACLE_PWD" || exit 1;
+"$ORACLE_BASE"/"$CREATE_DB_FILE_1" $ORACLE_SID "$ORACLE_PDB" "$ORACLE_PWD" || exit 1;

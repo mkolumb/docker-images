@@ -43,11 +43,18 @@ ENV ORACLE_BASE=/opt/oracle \
     INSTALL_FILE_2="oracle-database-xe-21c-1.0-1.ol7.x86_64.rpm" \
     RUN_FILE="runOracle.sh" \
     RUN_FILE_1="runOracle_1.sh" \
-    RUN_FILE_2="runOracle_2.sh" \
+    RUN_FILE_2_1="runOracle_2_1.sh" \
+    RUN_FILE_2_2="runOracle_2_2.sh" \
+    RUN_FILE_2_3="runOracle_2_3.sh" \
+    RUN_FILE_2_4="runOracle_2_4.sh" \
     RUN_FILE_3="runOracle_3.sh" \
     RUN_FILE_4="runOracle_4.sh" \
     PWD_FILE="setPassword.sh" \
     CREATE_DB_FILE="createDB.sh" \
+    CREATE_DB_FILE_1="createDB_1.sh" \
+    CREATE_DB_FILE_2="createDB_2.sh" \
+    CREATE_DB_FILE_3="createDB_3.sh" \
+    CREATE_DB_FILE_4="createDB_4.sh" \
     USER_SCRIPTS_FILE="runUserScripts.sh" \
     CONF_FILE="oracle-xe-21c.conf" \
     CHECK_SPACE_FILE="checkSpace.sh" \
@@ -63,7 +70,9 @@ ENV PATH=$ORACLE_HOME/bin:$PATH
 # Copy binaries
 # -------------
 COPY $CHECK_SPACE_FILE $CONF_FILE $SETUP_LINUX_FILE $INSTALL_DIR/
-COPY $RUN_FILE $RUN_FILE_1 $RUN_FILE_2 $RUN_FILE_3 $RUN_FILE_4 $PWD_FILE $CHECK_DB_FILE $CREATE_DB_FILE $USER_SCRIPTS_FILE $ORACLE_BASE/
+COPY $RUN_FILE_1 $RUN_FILE_2_1 $RUN_FILE_2_2 $RUN_FILE_2_3 $RUN_FILE_2_4 $RUN_FILE_3 $RUN_FILE_4 $ORACLE_BASE/
+COPY $CREATE_DB_FILE_1 $CREATE_DB_FILE_2 $CREATE_DB_FILE_3 $CREATE_DB_FILE_4 $ORACLE_BASE/
+COPY $RUN_FILE $PWD_FILE $CHECK_DB_FILE $CREATE_DB_FILE $USER_SCRIPTS_FILE $ORACLE_BASE/
 
 RUN chmod ug+x $INSTALL_DIR/*.sh && \
     sync && \
@@ -225,7 +234,13 @@ HEALTHCHECK --interval=1m --start-period=5m --timeout=30s \
 
 RUN $ORACLE_BASE/$RUN_FILE_1
 
-RUN $ORACLE_BASE/$RUN_FILE_2
+RUN $ORACLE_BASE/$RUN_FILE_2_1
+
+RUN $ORACLE_BASE/$RUN_FILE_2_2
+
+RUN $ORACLE_BASE/$RUN_FILE_2_3
+
+RUN $ORACLE_BASE/$RUN_FILE_2_4
 
 RUN $ORACLE_BASE/$RUN_FILE_3
 
