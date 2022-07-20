@@ -41,6 +41,7 @@ ENV ORACLE_BASE=/opt/oracle \
     ORACLE_SID=XE \
     INSTALL_FILE_1="https://download.oracle.com/otn-pub/otn_software/db-express/oracle-database-xe-21c-1.0-1.ol7.x86_64.rpm" \
     INSTALL_FILE_2="oracle-database-xe-21c-1.0-1.ol7.x86_64.rpm" \
+	PACKAGE_NAME="oracle-database-xe-21c.x86_64" \
     RUN_FILE="runOracle.sh" \
     RUN_FILE_1="runOracle_1.sh" \
     RUN_FILE_2_1="runOracle_2_1.sh" \
@@ -214,7 +215,6 @@ RUN $INSTALL_DIR/$SETUP_LINUX_FILE && \
 
 RUN wget -q $INSTALL_FILE_1 && \
     yum -y localinstall $INSTALL_FILE_2 && \
-    yum -y remove expect && \
     rm -rf /var/cache/yum && \
     rm -rf /var/tmp/yum-* && \ 
 	yum clean all && \
@@ -225,8 +225,8 @@ RUN wget -q $INSTALL_FILE_1 && \
     rm -f $REMOVE_FILE_4
 
 RUN wget -q $INSTALL_FILE_1 && \
+	yum -y remove $PACKAGE_NAME && \
     yum -y localinstall $INSTALL_FILE_2 && \
-    yum -y remove expect && \
     rm -rf /var/cache/yum && \
     rm -rf /var/tmp/yum-* && \ 
 	yum clean all && \
@@ -236,8 +236,8 @@ RUN wget -q $INSTALL_FILE_1 && \
     rm -f $REMOVE_FILE_3
 
 RUN wget -q $INSTALL_FILE_1 && \
+	yum -y remove $PACKAGE_NAME && \
     yum -y localinstall $INSTALL_FILE_2 && \
-    yum -y remove expect && \
     rm -rf /var/cache/yum && \
     rm -rf /var/tmp/yum-* && \ 
 	yum clean all && \
@@ -246,8 +246,8 @@ RUN wget -q $INSTALL_FILE_1 && \
     rm -f $REMOVE_FILE_2
 
 RUN wget -q $INSTALL_FILE_1 && \
+	yum -y remove $PACKAGE_NAME && \
     yum -y localinstall $INSTALL_FILE_2 && \
-    yum -y remove expect && \
     rm -rf /var/cache/yum && \
     rm -rf /var/tmp/yum-* && \ 
 	yum clean all && \
@@ -255,6 +255,7 @@ RUN wget -q $INSTALL_FILE_1 && \
     rm -f $REMOVE_FILE_1
 
 RUN wget -q $INSTALL_FILE_1 && \
+	yum -y remove $PACKAGE_NAME && \
     yum -y localinstall $INSTALL_FILE_2 && \
     yum -y remove expect && \
     rm -rf /var/cache/yum && \
@@ -280,11 +281,11 @@ RUN $INSTALL_DIR/$RUN_FILE_2_2
 
 RUN $INSTALL_DIR/$RUN_FILE_2_3
 
-RUN $INSTALL_DIR/$RUN_FILE_2_4
+# RUN $INSTALL_DIR/$RUN_FILE_2_4
 
-RUN $INSTALL_DIR/$RUN_FILE_3
+# RUN $INSTALL_DIR/$RUN_FILE_3
 
-RUN $INSTALL_DIR/$RUN_FILE_4
+# RUN $INSTALL_DIR/$RUN_FILE_4
 
 RUN cd $HOME && \
     rm -rf $INSTALL_DIR
