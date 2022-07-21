@@ -17,7 +17,7 @@ set -e
 
 echo "install package: '$1'"
 
-yum -y install $1
+yum -y --disableplugin=fastestmirror install $1
 
 rm -rf /var/cache/yum
 

@@ -27,7 +27,7 @@ wget -q $INSTALL_FILE_1
 
 echo "Install '$INSTALL_FILE_2' - '$1'"
 
-unbuffer yum -y localinstall $INSTALL_FILE_2
+unbuffer yum -y --disableplugin=fastestmirror localinstall $INSTALL_FILE_2
 
 echo "Clean yum after - '$1'"
 
