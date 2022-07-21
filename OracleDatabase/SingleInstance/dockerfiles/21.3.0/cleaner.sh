@@ -31,6 +31,8 @@ rm -rfv /tmp/*
 
 rm -rfv /var/cache/*
 
+rm -rfv /var/log/*
+
 rm -rfv /var/logs/*
 
 rm -rfv /var/tmp/*
