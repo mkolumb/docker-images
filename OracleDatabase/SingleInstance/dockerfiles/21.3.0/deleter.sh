@@ -29,17 +29,18 @@ rpm --rebuilddb
 
 package-cleanup --problems
 
-# yum -y -q erase $PACKAGE_NAME > /dev/null
-
 echo "Download - '$1'"
 
 wget -q $INSTALL_FILE_1
 
-echo "Install '$INSTALL_FILE_2' - '$1'"
+if [ "$1" -gt "0" ]; then
+	echo "Reinstall '$INSTALL_FILE_2' - '$1'"
 
-if [ yum list installed "$PACKAGE_NAME" ] >/dev/null 2>&1; then
+	# yum -y -q erase $PACKAGE_NAME > /dev/null
+
 	unbuffer yum -y reinstall $INSTALL_FILE_2
 else
+	echo "Install '$INSTALL_FILE_2' - '$1'"
 	unbuffer yum -y install $INSTALL_FILE_2
 fi
 
