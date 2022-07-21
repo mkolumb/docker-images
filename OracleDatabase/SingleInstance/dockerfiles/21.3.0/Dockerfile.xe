@@ -111,7 +111,7 @@ RUN chmod ug+x $INSTALL_DIR/*.sh && \
     sync && \
     $INSTALL_DIR/$CHECK_SPACE_FILE && \
     cd $INSTALL_DIR && \
-    yum -y --disableplugin=fastestmirror install expect && \
+    yum -y --disableplugin=ovl install expect && \
     rm -rf /var/cache/yum && \
     rm -rf /var/tmp/yum-* && \ 
 	yum clean all && \ 
@@ -183,7 +183,7 @@ RUN $INSTALL_DIR/$DELETER_FILE 25
 RUN rm -rf $ORACLE_HOME && \
 	yum -y -q remove $PACKAGE_NAME > /dev/null && \
 	wget -q $INSTALL_FILE_1 && \ 
-    unbuffer yum -y --disableplugin=fastestmirror localinstall $INSTALL_FILE_2 && \
+    unbuffer yum -y --disableplugin=ovl localinstall $INSTALL_FILE_2 && \
     yum -y remove expect && \
     rm -rf /var/cache/yum && \
     rm -rf /var/tmp/yum-* && \ 
