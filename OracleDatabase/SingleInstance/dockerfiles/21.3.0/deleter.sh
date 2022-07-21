@@ -37,22 +37,22 @@ echo "Clean files - '$1'"
 
 if [ "$1" -lt "24" ]; then 
 	echo "delete file: '$REMOVE_FILE_1'"
-	rm -rf $REMOVE_FILE_1
+	rm -rfv $REMOVE_FILE_1
 fi
 
 if [ "$1" -lt "23" ]; then 
 	echo "delete file: '$REMOVE_FILE_2'"
-	rm -rf $REMOVE_FILE_2
+	rm -rfv $REMOVE_FILE_2
 fi
 
 if [ "$1" -lt "22" ]; then 
 	echo "delete file: '$REMOVE_FILE_3'"
-	rm -rf $REMOVE_FILE_3
+	rm -rfv $REMOVE_FILE_3
 fi
 
 if [ "$1" -lt "21" ]; then 
 	echo "delete file: '$REMOVE_FILE_4'"
-	rm -rf $REMOVE_FILE_4
+	rm -rfv $REMOVE_FILE_4
 fi
 
 if [ "$1" -lt "20" ]; then 
