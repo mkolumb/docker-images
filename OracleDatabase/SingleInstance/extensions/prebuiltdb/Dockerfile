@@ -33,6 +33,16 @@ ENV ORACLE_PDB=${ORACLE_PDB}
 ENV ORACLE_PWD=${ORACLE_PWD}
 ENV AUTO_MEM_CALCULATION=${AUTO_MEM_CALCULATION:-false}
 
-# Creating the database
-RUN $ORACLE_BASE/$RUN_FILE --nowait && \ 
-	cd /tmp && rm -rfv *
+# create db
+ENV CREATE_SCRIPT="create_oracle.sh"
+
+COPY $CREATE_SCRIPT $ORACLE_BASE/
+
+USER root
+
+RUN chown -R oracle:oinstall $ORACLE_BASE/$CREATE_SCRIPT
+
+USER oracle
+WORKDIR /home/oracle
+
+RUN $ORACLE_BASE/$RUN_FILE --nowait && $ORACLE_BASE/$CREATE_SCRIPT
