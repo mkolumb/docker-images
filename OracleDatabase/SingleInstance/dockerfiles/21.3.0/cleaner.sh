@@ -23,9 +23,9 @@ rm -rfv /var/tmp/yum-*
 
 yum clean all
 
-rm -fv $INSTALL_FILE_2
+rm -fv "$INSTALL_FILE_2"
 
-rm -fv $INSTALL_DIR/$INSTALL_FILE_2
+rm -fv "$INSTALL_DIR/$INSTALL_FILE_2"
 
 rm -rfv /tmp/*
 
