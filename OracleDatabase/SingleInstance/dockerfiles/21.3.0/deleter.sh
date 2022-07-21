@@ -35,9 +35,6 @@ wget -q $INSTALL_FILE_1
 
 if [ "$1" -gt "0" ]; then
 	echo "Reinstall '$INSTALL_FILE_2' - '$1'"
-
-	# yum -y -q erase $PACKAGE_NAME > /dev/null
-
 	unbuffer yum -y reinstall $INSTALL_FILE_2
 else
 	echo "Install '$INSTALL_FILE_2' - '$1'"
