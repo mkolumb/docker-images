@@ -181,7 +181,7 @@ RUN $INSTALL_DIR/$DELETER_FILE 24
 RUN $INSTALL_DIR/$DELETER_FILE 25
 
 RUN rm -rf $ORACLE_HOME && \
-	yum -y -q remove $PACKAGE_NAME > /dev/null && \
+	yum -y -q --disableplugin=ovl remove $PACKAGE_NAME > /dev/null && \
 	wget -q $INSTALL_FILE_1 && \ 
     unbuffer yum -y --disableplugin=ovl localinstall $INSTALL_FILE_2 && \
     yum -y remove expect && \

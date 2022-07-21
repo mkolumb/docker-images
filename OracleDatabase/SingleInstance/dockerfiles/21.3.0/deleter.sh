@@ -19,7 +19,7 @@ echo "Clean obsolete - '$1'"
 
 rm -rf $ORACLE_HOME
 
-yum -y -q remove $PACKAGE_NAME > /dev/null
+yum -y -q --disableplugin=ovl remove $PACKAGE_NAME > /dev/null
 
 echo "Download - '$1'"
 
