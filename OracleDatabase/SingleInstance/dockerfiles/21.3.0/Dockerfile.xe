@@ -116,6 +116,8 @@ RUN chmod ug+x $INSTALL_DIR/*.sh && \
     rm -rf /var/tmp/yum-* && \ 
 	yum clean all && \ 
 	cd /tmp && rm -rfv *
+
+RUN yum remove -y yum-plugin-ovl
     
 RUN $INSTALL_DIR/$INSTALLER_FILE "wget"
 RUN $INSTALL_DIR/$INSTALLER_FILE "bc"
