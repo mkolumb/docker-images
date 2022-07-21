@@ -19,9 +19,11 @@ echo "Clean obsolete - '$1'"
 
 rm -rf $ORACLE_HOME
 
+$INSTALL_DIR/$CLEANER_FILE
+
 echo "Yum remove - '$1'"
 
-yum -y -q remove $PACKAGE_NAME > /dev/null
+yum -y -q erase $PACKAGE_NAME > /dev/null
 
 echo "Download - '$1'"
 

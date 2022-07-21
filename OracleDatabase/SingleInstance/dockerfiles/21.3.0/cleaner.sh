@@ -37,6 +37,12 @@ rm -rfv /var/logs/*
 
 rm -rfv /var/tmp/*
 
+yum clean all
+
+rpm --rebuilddb
+
+package-cleanup --problems
+
 echo "Clean tmp files done"
 
 exit 0;
