@@ -23,6 +23,10 @@ rm -rfv /var/tmp/yum-*
 
 yum clean all
 
+rpm --rebuilddb
+
+package-cleanup --problems
+
 rm -fv "$INSTALL_FILE_2"
 
 rm -fv "$INSTALL_DIR/$INSTALL_FILE_2"
@@ -36,12 +40,6 @@ rm -rfv /var/log/*
 rm -rfv /var/logs/*
 
 rm -rfv /var/tmp/*
-
-yum clean all
-
-rpm --rebuilddb
-
-package-cleanup --problems
 
 echo "Clean tmp files done"
 
