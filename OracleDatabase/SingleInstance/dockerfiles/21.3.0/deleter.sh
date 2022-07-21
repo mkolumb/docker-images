@@ -19,7 +19,7 @@ echo "Clean obsolete - '$1'"
 
 rm -rf $ORACLE_HOME
 
-yum -y -q --disableplugin=ovl remove $PACKAGE_NAME > /dev/null
+yum -y -q remove $PACKAGE_NAME > /dev/null
 
 echo "Download - '$1'"
 
@@ -27,19 +27,11 @@ wget -q $INSTALL_FILE_1
 
 echo "Install '$INSTALL_FILE_2' - '$1'"
 
-unbuffer yum -y --disableplugin=ovl localinstall $INSTALL_FILE_2
+unbuffer yum -y localinstall $INSTALL_FILE_2
 
 echo "Clean yum after - '$1'"
 
-rm -rf /var/cache/yum
-
-rm -rf /var/tmp/yum-*
-
-yum clean all
-
-rm -f $INSTALL_FILE_2
-
-cd /tmp && rm -rfv *
+$INSTALL_DIR/$CLEANER_FILE
 
 echo "Clean files - '$1'"
 
@@ -163,7 +155,6 @@ if [ "$1" -lt "1" ]; then
 	rm -rf $REMOVE_DIR_20
 fi
 
-
-cd /tmp && rm -rfv *
+$INSTALL_DIR/$CLEANER_FILE
 
 exit 0;

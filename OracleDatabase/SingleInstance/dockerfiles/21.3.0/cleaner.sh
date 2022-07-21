@@ -15,10 +15,26 @@
 
 set -e
 
-echo "install package: '$1'"
+echo "Clean tmp files start"
 
-yum -y install $1
+rm -rfv /var/cache/yum
 
-$INSTALL_DIR/$CLEANER_FILE
+rm -rfv /var/tmp/yum-*
+
+yum clean all
+
+rm -fv $INSTALL_FILE_2
+
+rm -fv $INSTALL_DIR/$INSTALL_FILE_2
+
+rm -rfv /tmp/*
+
+rm -rfv /var/cache/*
+
+rm -rfv /var/logs/*
+
+rm -rfv /var/tmp/*
+
+echo "Clean tmp files done"
 
 exit 0;

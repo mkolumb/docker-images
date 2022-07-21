@@ -44,6 +44,7 @@ ENV ORACLE_BASE=/opt/oracle \
 	PACKAGE_NAME="oracle-database-xe-21c.x86_64" \
     DELETER_FILE="deleter.sh" \
     INSTALLER_FILE="installer.sh" \
+    CLEANER_FILE="cleaner.sh" \
     RUN_FILE="runOracle.sh" \
     RUN_FILE_1="runOracle_1.sh" \
     RUN_FILE_2_1="runOracle_2_1.sh" \
@@ -102,7 +103,7 @@ COPY $RUN_FILE $PWD_FILE $CHECK_DB_FILE $CREATE_DB_FILE $USER_SCRIPTS_FILE $ORAC
 COPY $RUN_FILE_1 $RUN_FILE_2_1 $RUN_FILE_2_2 $RUN_FILE_2_3 $RUN_FILE_2_4 $RUN_FILE_3 $RUN_FILE_4 $INSTALL_DIR/
 COPY $CREATE_DB_FILE_1 $CREATE_DB_FILE_2 $CREATE_DB_FILE_3 $CREATE_DB_FILE_4 $INSTALL_DIR/
 
-COPY $DELETER_FILE $INSTALLER_FILE $INSTALL_DIR/
+COPY $DELETER_FILE $INSTALLER_FILE $CLEANER_FILE $INSTALL_DIR/
 
 COPY $RUN_FILE_1 $RUN_FILE_2_1 $RUN_FILE_2_2 $RUN_FILE_2_3 $RUN_FILE_2_4 $RUN_FILE_3 $RUN_FILE_4 $ORACLE_BASE/
 COPY $CREATE_DB_FILE_1 $CREATE_DB_FILE_2 $CREATE_DB_FILE_3 $CREATE_DB_FILE_4 $ORACLE_BASE/
@@ -111,13 +112,8 @@ RUN chmod ug+x $INSTALL_DIR/*.sh && \
     sync && \
     $INSTALL_DIR/$CHECK_SPACE_FILE && \
     cd $INSTALL_DIR && \
-    yum -y --disableplugin=ovl install expect && \
-    rm -rf /var/cache/yum && \
-    rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \ 
-	cd /tmp && rm -rfv *
-
-RUN yum remove -y yum-plugin-ovl
+    yum -y install expect && \
+    $INSTALL_DIR/$CLEANER_FILE
     
 RUN $INSTALL_DIR/$INSTALLER_FILE "wget"
 RUN $INSTALL_DIR/$INSTALLER_FILE "bc"
@@ -153,7 +149,7 @@ RUN $INSTALL_DIR/$INSTALLER_FILE "oracle-database-preinstall-21c"
 RUN $INSTALL_DIR/$SETUP_LINUX_FILE && \
     chown -R oracle:oinstall $ORACLE_BASE /home/oracle && \
     sed -i -e 's/\(oracle\s\+hard\s\+nofile\)/# \1/' /etc/security/limits.d/oracle-database-preinstall-21c.conf && \ 
-	cd /tmp && rm -rfv *
+	$INSTALL_DIR/$CLEANER_FILE
 
 RUN $INSTALL_DIR/$DELETER_FILE 0
 RUN $INSTALL_DIR/$DELETER_FILE 1
@@ -182,26 +178,15 @@ RUN $INSTALL_DIR/$DELETER_FILE 23
 RUN $INSTALL_DIR/$DELETER_FILE 24
 RUN $INSTALL_DIR/$DELETER_FILE 25
 
-RUN rm -rf $ORACLE_HOME && \
-	yum -y -q --disableplugin=ovl remove $PACKAGE_NAME > /dev/null && \
-	wget -q $INSTALL_FILE_1 && \ 
-    unbuffer yum -y --disableplugin=ovl localinstall $INSTALL_FILE_2 && \
-    yum -y remove expect && \
-    rm -rf /var/cache/yum && \
-    rm -rf /var/tmp/yum-* && \ 
-	yum clean all && \
-    rm -f $INSTALL_FILE_2 && \ 
-	cd /tmp && rm -rfv *
+RUN $INSTALL_DIR/$DELETER_FILE 100
    
 RUN mv $INSTALL_DIR/$CONF_FILE /etc/sysconfig/ 
 
 RUN cd $HOME && \
-    rm -rf $INSTALL_DIR && \ 
-	cd /tmp && rm -rfv *
+    rm -rf $INSTALL_DIR
     
 RUN $ORACLE_BASE/oraInventory/orainstRoot.sh && \
-    $ORACLE_HOME/root.sh && \ 
-	cd /tmp && rm -rfv *
+    $ORACLE_HOME/root.sh
 
 USER oracle
 WORKDIR /home/oracle
