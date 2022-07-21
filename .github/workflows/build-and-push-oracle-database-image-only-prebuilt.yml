@@ -1,0 +1,36 @@
+name: Build and publish Oracle Database container image to GitHub Container Registry
+
+on:
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: oracle-db
+  TAG: xe
+
+jobs:
+  push:
+    name: Build and push Oracle Database image
+
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Log into GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${GITHUB_ACTOR,,} --password-stdin
+
+      - name: Repository owner needs to be lowercase
+        id: repo-owner
+        run: |
+          REPO_OWNER=${{ github.repository_owner }}
+          echo "::set-output name=repo-owner::${REPO_OWNER,,}"
+
+      - name: Build Oracle Prebuilt Database image
+        run: |
+          cd OracleDatabase/SingleInstance/extensions
+          sudo ./buildExtensions.sh -b ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb:21.3-xe -t ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb_pre:21.3-xe -x 'prebuiltdb' -o '--build-arg ORACLE_SID=XE --build-arg ENABLE_ARCHIVELOG=false --build-arg ORACLE_PWD=root'
+
+      - name: Push image to GitHub Container Registry
+        run: |
+          docker push ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oracledb_pre:21.3-xe
