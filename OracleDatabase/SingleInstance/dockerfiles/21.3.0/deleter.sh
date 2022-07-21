@@ -23,6 +23,12 @@ $INSTALL_DIR/$CLEANER_FILE
 
 echo "Yum remove - '$1'"
 
+yum clean all
+
+rpm --rebuilddb
+
+package-cleanup --problems
+
 yum -y -q erase $PACKAGE_NAME > /dev/null
 
 echo "Download - '$1'"
