@@ -15,13 +15,21 @@
 
 set -e
 
+echo "Clean obsolete - '$1'"
+
 rm -rf $ORACLE_HOME
 
 yum -y -q remove $PACKAGE_NAME > /dev/null
 
+echo "Download - '$1'"
+
 wget -q $INSTALL_FILE_1
 
+echo "Install '$INSTALL_FILE_2' - '$1'"
+
 unbuffer yum -y localinstall $INSTALL_FILE_2
+
+echo "Clean yum after - '$1'"
 
 rm -rf /var/cache/yum
 
@@ -32,6 +40,8 @@ yum clean all
 rm -f $INSTALL_FILE_2
 
 cd /tmp && rm -rfv *
+
+echo "Clean files - '$1'"
 
 if [ "$1" -lt "24" ]; then 
 	echo "delete file: '$REMOVE_FILE_1'"
