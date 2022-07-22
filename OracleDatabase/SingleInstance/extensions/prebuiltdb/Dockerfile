@@ -45,4 +45,4 @@ RUN chown -R oracle:oinstall $ORACLE_BASE/$CREATE_SCRIPT
 USER oracle
 WORKDIR /home/oracle
 
-RUN $ORACLE_BASE/$RUN_FILE --nowait && $ORACLE_BASE/$CREATE_SCRIPT
+RUN $ORACLE_BASE/$RUN_FILE --nowait
