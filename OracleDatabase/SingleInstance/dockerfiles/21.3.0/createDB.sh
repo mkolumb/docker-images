@@ -132,6 +132,22 @@ GRANT SELECT ON sys.v_\$pdbs TO OPS\$oracle;
 GRANT SELECT ON sys.v_\$database TO OPS\$oracle;
 ALTER USER OPS\$oracle SET container_data=all for sys.v_\$pdbs container = current;
 
+alter database add logfile ('/opt/oracle/oradata/XE/redo21.log') size 4m;
+
+alter database add logfile ('/opt/oracle/oradata/XE/redo22.log') size 4m;
+
+alter database add logfile ('/opt/oracle/oradata/XE/redo23.log') size 4m;
+
+alter system switch logfile;
+
+alter system checkpoint;
+
+alter database drop logfile group 1;
+
+alter database drop logfile group 2;
+
+alter database drop logfile group 3;
+
 exit;
 EOF
 
