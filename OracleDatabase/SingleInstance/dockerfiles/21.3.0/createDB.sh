@@ -132,21 +132,27 @@ GRANT SELECT ON sys.v_\$pdbs TO OPS\$oracle;
 GRANT SELECT ON sys.v_\$database TO OPS\$oracle;
 ALTER USER OPS\$oracle SET container_data=all for sys.v_\$pdbs container = current;
 
-alter database add logfile ('/opt/oracle/oradata/XE/redo21.log') size 4m;
+ALTER DATABASE ADD LOGFILE ('/opt/oracle/oradata/XE/redon1.log') SIZE 10M;
 
-alter database add logfile ('/opt/oracle/oradata/XE/redo22.log') size 4m;
+ALTER DATABASE ADD LOGFILE ('/opt/oracle/oradata/XE/redon2.log') SIZE 10M;
 
-alter database add logfile ('/opt/oracle/oradata/XE/redo23.log') size 4m;
+ALTER DATABASE ADD LOGFILE ('/opt/oracle/oradata/XE/redon3.log') SIZE 10M;
 
-alter system switch logfile;
+ALTER SYSTEM SWITCH LOGFILE;
 
-alter system checkpoint;
+ALTER SYSTEM CHECKPOINT;
 
-alter database drop logfile group 1;
+ALTER DATABASE DROP LOGFILE GROUP 1;
 
-alter database drop logfile group 2;
+ALTER DATABASE DROP LOGFILE GROUP 2;
 
-alter database drop logfile group 3;
+ALTER DATABASE DROP LOGFILE GROUP 3;
+
+ALTER DATABASE CLEAR UNARCHIVED LOGFILE GROUP 4;
+
+ALTER DATABASE CLEAR UNARCHIVED LOGFILE GROUP 5;
+
+ALTER DATABASE CLEAR UNARCHIVED LOGFILE GROUP 6;
 
 exit;
 EOF
